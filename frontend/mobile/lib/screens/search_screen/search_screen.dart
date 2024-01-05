@@ -9,6 +9,7 @@ import 'package:mot/screens/search_screen/child_categories_screen.dart';
 
 class SearchScreen extends StatefulWidget {
   final Category? selectedParentCategory;
+  static String routeName = "/search";
 
   const SearchScreen({Key? key, this.selectedParentCategory}) : super(key: key);
 
@@ -24,7 +25,7 @@ class _SearchScreenState extends State<SearchScreen> {
       super.initState();
       _fetchCategories();
     }
-
+  // Maybe change it somehow so it does not take too much time
   void _fetchCategories() async {
     const String apiUrl = '$baseUrl/api/product/public/categoryHierarchy';
      try {
@@ -71,6 +72,7 @@ class _SearchScreenState extends State<SearchScreen> {
 
   void _handleCategoryTap(Category category) {
     // Handle category tap, e.g., navigate to child categories screen
+    // TODO : change it in context.go
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => ChildCategoriesScreen(

@@ -47,10 +47,10 @@ class _SearchFieldState extends State<SearchField> {
             borderSide: const BorderSide(color: Colors.white),
             borderRadius: BorderRadius.circular(29.0),
           ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: kPrimaryColor),
-            borderRadius: BorderRadius.circular(29.0),
-          ),
+          // focusedBorder: OutlineInputBorder(
+          //   borderSide: const BorderSide(color: kPrimaryColor),
+          //   borderRadius: BorderRadius.circular(29.0),
+          // ),
           hintStyle: const TextStyle(color: Color(0xFF4E4F51)),
         ),
       ),

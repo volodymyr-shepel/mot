@@ -22,6 +22,5 @@ final Map<String, WidgetBuilder> routes = {
   SignUpScreen.routeName: (context) => const SignUpScreen(),
   ForgotPasswordSuccessScreen.routeName : (context) => const ForgotPasswordSuccessScreen(),
   ProfileScreen.routeName : (context) => const ProfileScreen(),
-  InitScreen.routeName : (context) => const InitScreen()
   
 };

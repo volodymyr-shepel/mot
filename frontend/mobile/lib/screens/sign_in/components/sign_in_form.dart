@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mot/components/custom_text_form_field.dart';
 import 'package:mot/screens/sign_in/sign_in_success_screen.dart';
 import '../../../constants.dart';
@@ -64,7 +65,7 @@ class _SignFormState extends State<SignForm> {
           }
           isCorrect = true;
 
-          Navigator.pushNamed(context, SignInSuccessScreen.routeName);
+          context.go(SignInSuccessScreen.routeName);
         } else {
           // Request failed with an error status code
           print('Failed to sign in, status code: ${response.statusCode}');
@@ -135,8 +136,7 @@ class _SignFormState extends State<SignForm> {
               Padding(
                 padding: const EdgeInsets.only(left: 10),
                 child: GestureDetector(
-                  onTap: () => Navigator.pushNamed(
-                      context, ForgotPasswordScreen.routeName),
+                  onTap: () => context.go(ForgotPasswordScreen.routeName),
                   child: const Text(
                     "Forgot Password?",
                     style: TextStyle(

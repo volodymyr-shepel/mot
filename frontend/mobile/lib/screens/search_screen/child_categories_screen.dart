@@ -7,25 +7,24 @@ import 'package:mot/screens/search_screen/components/search_field.dart';
 class ChildCategoriesScreen extends StatelessWidget {
   final Category parentCategory;
 
+  static String routeName = "/childCategories";
+
   ChildCategoriesScreen({required this.parentCategory});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-      leading: IconButton(
-        onPressed: () {
-          KeyboardUtil.hideKeyboard(context);
-          Navigator.pop(context);
-        },
-        icon: const Icon(Icons.arrow_back_ios),
-      ),
-      automaticallyImplyLeading: false,
-      title: Text(
-        parentCategory.name,
-        style: TextStyle(fontSize: 20.0, color: Colors.white),
-      ),
-    ),
+      // appBar: AppBar(
+      //   title: Text(parentCategory.name,
+      //   style: TextStyle(fontSize: 20.0, color: Colors.white),),
+      //   leading: IconButton(
+      //     onPressed: () {
+      //       KeyboardUtil.hideKeyboard(context);
+      //       Navigator.pop(context);
+      //     },
+      //     icon: const Icon(Icons.arrow_back_ios),
+      //   ),
+      // ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(vertical: 20),
         child: Column(
