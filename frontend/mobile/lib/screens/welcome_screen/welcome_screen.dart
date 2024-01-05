@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mot/screens/sign_in/sign_in_screen.dart';
-import 'package:mot/screens/welcome/components/welcome_content.dart';
+import 'package:mot/screens/welcome_screen/components/welcome_content.dart';
 
 import '../../constants.dart';
 
@@ -16,7 +16,6 @@ class WelcomeScreen extends StatefulWidget {
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
   int currentPage = 0;
-
 
   // This is screen which is displayed on the welcome screen
   List<Map<String, String>> welcomeData = [

@@ -107,7 +107,6 @@ class _SignFormState extends State<SignForm> {
               else if(!isCorrect){
                 return "Verify your email";
               }
-
               return null;
             },
         ),
@@ -119,17 +118,15 @@ class _SignFormState extends State<SignForm> {
           obscureText: true,
           onSaved: (newValue) => password = newValue,
           validator: (value) {
-            
             if (value!.isEmpty) {
               return "Password can not be empty";
             } else if (!passwordValidatorRegExp.hasMatch(value)) { 
               return "Invalid Password";
             }
             else if(!isCorrect){
-              return "Verify your password";
+              return "Verify your password"; // used in situation when the backend returns 
             }
-
-            return null;
+            return null; 
           },
         ),
           const SizedBox(height: 15),
@@ -151,8 +148,6 @@ class _SignFormState extends State<SignForm> {
               ),
             ],
           ),
-          // Commenting out the FormError widget
-          // FormError(errors: errors),
           const SizedBox(height: 16),
           ElevatedButton(
   onPressed: () async {
@@ -167,7 +162,6 @@ class _SignFormState extends State<SignForm> {
   },
   child: const Text("Continue"),
 ),
-
         ],
       ),
     );

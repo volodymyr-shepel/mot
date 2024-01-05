@@ -23,11 +23,6 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
 
   bool isCorrect = true;
 
-
-  
-
-  
-
   Future<void> sendForgotPasswordRequest() async {
     try {
       final response = await http.post(

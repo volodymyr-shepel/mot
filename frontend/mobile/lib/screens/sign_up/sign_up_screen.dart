@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-
-import '../../constants.dart';
 import 'components/sign_up_form.dart';
 
 class SignUpScreen extends StatelessWidget {
@@ -17,9 +15,8 @@ class SignUpScreen extends StatelessWidget {
             Navigator.pop(context);
           },
           icon: const Icon(Icons.arrow_back_ios),
-          color: Colors.white,
+          //color: Colors.white,
         ),
-        backgroundColor: kPrimaryDarkColor,
       ),
       body: const SafeArea(
         child: Center(

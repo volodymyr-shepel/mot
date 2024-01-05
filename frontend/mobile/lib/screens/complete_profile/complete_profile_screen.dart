@@ -20,21 +20,19 @@ class CompleteProfileScreen extends StatelessWidget {
             Navigator.pop(context);
           },
           icon: const Icon(Icons.arrow_back_ios),
-          color: Colors.white,
         ),
-        backgroundColor: kPrimaryDarkColor,
       ),
       body: Center(
         child: SafeArea(
           child: SizedBox(
             width: double.infinity,
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    SizedBox(height: 16),
-                    Text(
+                    const SizedBox(height: 16),
+                    const Text(
                       "Complete Profile",
                       style: TextStyle(
                         color: Colors.white,
@@ -42,9 +40,9 @@ class CompleteProfileScreen extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     CompleteProfileForm(userData: userData),
-                    SizedBox(height: 30),
+                    const SizedBox(height: 30),
                   ],
                 ),
               ),

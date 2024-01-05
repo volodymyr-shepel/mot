@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:mot/routes.dart';
-import 'package:mot/screens/welcome/welcome_screen.dart';
+import 'package:mot/screens/welcome_screen/welcome_screen.dart';
 import 'theme.dart';
 
 void main() {
   
-
   runApp(const MyApp());
 }
 
