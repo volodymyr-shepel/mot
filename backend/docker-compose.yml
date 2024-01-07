@@ -70,7 +70,7 @@ services:
 
   nginx:
     build:
-      context: ./
+      context: .
       dockerfile: ./Docker/nginx/nginx.dockerfile
     container_name: mot_nginx
     ports:

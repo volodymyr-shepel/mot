@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mot/screens/home/home_screen.dart';
 import 'package:mot/screens/init_screen/init_screen.dart';
 import '../../components/custom_success_screen.dart';
 
@@ -14,7 +15,7 @@ class SignInSuccessScreen extends StatelessWidget {
       imagePath: "assets/images/success.png",
       title: "Login Success",
       buttonText: "Back to Home",
-      nextRoute: InitScreen.routeName 
+      nextRoute: HomeScreen.routeName 
     );
   }
 }
