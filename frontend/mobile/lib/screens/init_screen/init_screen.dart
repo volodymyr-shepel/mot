@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:mot/components/bottom_navigation_bar.dart';
 import 'package:mot/screens/cart_screen/cart_screen.dart';
 import 'package:mot/screens/favorite_screen/favorite_screen.dart';
-import 'package:mot/screens/home_screen/home_screen.dart';
+import 'package:mot/screens/home/home_screen.dart';
 import 'package:mot/screens/profile_screen/profile_screen.dart';
 import 'package:mot/screens/search_screen/search_screen.dart';
 

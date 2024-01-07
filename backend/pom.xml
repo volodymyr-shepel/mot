@@ -15,12 +15,10 @@
     <name>mot-ecommerce</name>
 	<description>E-commerce website for mot.</description>
     <modules>
-        <module>identity-service</module>
 		<module>api-gw</module>
 		<module>amqp</module>
 		<module>notification-service</module>
 		<module>identity-service</module>
-        <module>amqp</module>
         <module>product-service</module>
 
 	</modules>

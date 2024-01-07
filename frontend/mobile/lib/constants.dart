@@ -34,8 +34,9 @@ const String kAddressNullError = "Please Enter your address";
 
 
 
-const String baseUrl = 'http://192.168.1.46';
+const String baseUrl = 'http://192.168.0.102';
 //192.168.1.46
+//192.168.0.102
 
 
 const headingStyle = TextStyle(

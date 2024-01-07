@@ -8,7 +8,7 @@ import 'package:mot/screens/complete_profile/complete_profile_screen.dart';
 import 'package:mot/screens/favorite_screen/favorite_screen.dart';
 import 'package:mot/screens/forgot_password/forgot_password_screen.dart';
 import 'package:mot/screens/forgot_password/forgot_password_success_screen.dart';
-import 'package:mot/screens/home_screen/home_screen.dart';
+import 'package:mot/screens/home/home_screen.dart';
 import 'package:mot/screens/init_screen/init_screen.dart';
 import 'package:mot/screens/search_screen/child_categories_screen.dart';
 import 'package:mot/screens/search_screen/search_screen.dart';
