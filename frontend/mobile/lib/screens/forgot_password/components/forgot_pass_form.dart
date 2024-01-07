@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mot/screens/forgot_password/forgot_password_success_screen.dart';
 import '../../../components/no_account_text.dart';
 import '../../../constants.dart';
@@ -23,11 +24,6 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
 
   bool isCorrect = true;
 
-
-  
-
-  
-
   Future<void> sendForgotPasswordRequest() async {
     try {
       final response = await http.post(
@@ -44,7 +40,7 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
         // Request was successful, you can handle the response data here
         print('Forgot password request successful! Response data: ${response.body}');
         // Navigate to the success screen or perform other actions
-        Navigator.pushNamed(context, ForgotPasswordSuccessScreen.routeName);
+        context.go(ForgotPasswordSuccessScreen.routeName);
 
         isCorrect = true;
       } else {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mot/components/custom_text_form_field.dart';
 import 'package:mot/screens/sign_in/sign_in_success_screen.dart';
 import '../../../constants.dart';
@@ -64,7 +65,7 @@ class _SignFormState extends State<SignForm> {
           }
           isCorrect = true;
 
-          Navigator.pushNamed(context, SignInSuccessScreen.routeName);
+          context.go(SignInSuccessScreen.routeName);
         } else {
           // Request failed with an error status code
           print('Failed to sign in, status code: ${response.statusCode}');
@@ -107,7 +108,6 @@ class _SignFormState extends State<SignForm> {
               else if(!isCorrect){
                 return "Verify your email";
               }
-
               return null;
             },
         ),
@@ -119,17 +119,15 @@ class _SignFormState extends State<SignForm> {
           obscureText: true,
           onSaved: (newValue) => password = newValue,
           validator: (value) {
-            
             if (value!.isEmpty) {
               return "Password can not be empty";
             } else if (!passwordValidatorRegExp.hasMatch(value)) { 
               return "Invalid Password";
             }
             else if(!isCorrect){
-              return "Verify your password";
+              return "Verify your password"; // used in situation when the backend returns 
             }
-
-            return null;
+            return null; 
           },
         ),
           const SizedBox(height: 15),
@@ -138,8 +136,7 @@ class _SignFormState extends State<SignForm> {
               Padding(
                 padding: const EdgeInsets.only(left: 10),
                 child: GestureDetector(
-                  onTap: () => Navigator.pushNamed(
-                      context, ForgotPasswordScreen.routeName),
+                  onTap: () => context.go(ForgotPasswordScreen.routeName),
                   child: const Text(
                     "Forgot Password?",
                     style: TextStyle(
@@ -151,8 +148,6 @@ class _SignFormState extends State<SignForm> {
               ),
             ],
           ),
-          // Commenting out the FormError widget
-          // FormError(errors: errors),
           const SizedBox(height: 16),
           ElevatedButton(
   onPressed: () async {
@@ -167,7 +162,6 @@ class _SignFormState extends State<SignForm> {
   },
   child: const Text("Continue"),
 ),
-
         ],
       ),
     );

@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'package:mot/screens/home/home_screen.dart';
 import 'package:mot/screens/init_screen/init_screen.dart';
+=======
+import 'package:mot/screens/home_screen/home_screen.dart';
+
+>>>>>>> origin/frontend
 import '../../components/custom_success_screen.dart';
 
 // TODO : FIX THE ICON COLOR CHANGE

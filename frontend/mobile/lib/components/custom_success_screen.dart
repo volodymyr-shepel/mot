@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../constants.dart';
 
 class CustomSuccessScreen extends StatelessWidget {
@@ -50,7 +51,7 @@ class CustomSuccessScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, nextRoute);
+                context.go(nextRoute);
               },
               child: Text(buttonText),
             ),

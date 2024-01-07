@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../constants.dart';
 import '../screens/sign_up/sign_up_screen.dart';
@@ -18,7 +19,7 @@ class NoAccountText extends StatelessWidget {
           style: TextStyle(fontSize: 16),
         ),
         GestureDetector(
-          onTap: () => Navigator.pushNamed(context, SignUpScreen.routeName),
+          onTap: () => context.go(SignUpScreen.routeName),
           child: const Text(
             "Sign Up",
             style: TextStyle(fontSize: 16, color: kPrimaryColor),

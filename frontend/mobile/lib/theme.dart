@@ -8,10 +8,10 @@ class AppTheme {
       scaffoldBackgroundColor: const Color(0xFF222325),
       fontFamily: "Muli",
       appBarTheme: const AppBarTheme(
-          color: Colors.white,
+          backgroundColor: kPrimaryDarkColor,
           elevation: 0,
-          iconTheme: IconThemeData(color: Colors.black),
-          titleTextStyle: TextStyle(color: Colors.black)),
+          iconTheme: IconThemeData(color: Colors.white),
+          titleTextStyle: TextStyle(color: Colors.white)),
       textTheme: const TextTheme(
         bodyLarge: TextStyle(color: kTextColor),
         bodyMedium: TextStyle(color: kTextColor),
@@ -25,6 +25,7 @@ class AppTheme {
         border: outlineInputBorder,
       ),
       visualDensity: VisualDensity.adaptivePlatformDensity,
+      
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           elevation: 0,
