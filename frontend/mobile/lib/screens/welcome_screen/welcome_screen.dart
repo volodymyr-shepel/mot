@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mot/screens/sign_in/sign_in_screen.dart';
 import 'package:mot/screens/welcome_screen/components/welcome_content.dart';
-
+import '../home/home_screen.dart';
 import '../../constants.dart';
 
 
@@ -86,7 +86,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       ElevatedButton(
                         onPressed: () {
                           
-                          context.go(SignInScreen.routeName);
+                          //context.go(SignInScreen.routeName); // TODO : CHANGE TO SIGN IN
+                          context.go(HomeScreen.routeName); // TODO : CHANGE TO SIGN IN
                         },
                         child: const Text("Continue"),
                       ),
