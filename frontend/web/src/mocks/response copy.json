@@ -1,0 +1,42 @@
+{
+  "categories": [
+    { 
+		"id": 1, 
+		"categoryName": "Category 1",
+		"products": [
+			{
+				"product_id": 101,
+				"sku": "1234-567-890",
+				"name": "Product 1",
+				"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+				"specification": [
+					{
+						"Manufacturer": "ACME",
+						"Size": "11'"
+					}
+				],
+				"quantity": 24,
+				"price": 1000.50,
+				"image_url": "https://i.postimg.cc/9Xs0pzgV/dell-U2723-QE.jpg"
+
+			},
+			{
+				"product_id": 102,
+				"sku": "1234-567-890",
+				"name": "Product 2",
+				"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+				"specification": [
+					{
+						"Manufacturer": "ACME",
+						"Size": "11'"
+					}
+				],
+				"quantity": 24,
+				"price": 1001.50,
+				"image_url": "https://i.postimg.cc/9Xs0pzgV/dell-U2723-QE.jpg"
+
+			}
+		]
+	}
+  ]
+}
