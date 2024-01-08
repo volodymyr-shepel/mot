@@ -60,7 +60,7 @@ services:
 
   rabbitmq:
     image: rabbitmq:3.12.9-management
-    container_name: mot_rabbitmq
+    container_name: rabbitmq
     ports:
       - "5672:5672"
       - "15672:15672"
@@ -71,7 +71,7 @@ services:
   nginx:
     build:
       context: .
-      dockerfile: ./Docker/nginx/nginx.dockerfile
+      dockerfile: ./Docker/nginx/Dockerfile
     container_name: mot_nginx
     ports:
       - "80:80"
@@ -86,6 +86,53 @@ services:
       - "8500:8500"  # Web UI
       - "8600:8600/udp"  # DNS
     command: "agent -dev -client=0.0.0.0"
+    networks:
+      - mot
+
+  #  My services
+  api-gw:
+    container_name: api-gw
+    build:
+      context: .
+      dockerfile: ./Docker/api-gw/Dockerfile
+    ports:
+      - "8083:8083"
+    networks:
+      - mot
+
+  identity-service:
+    container_name: identity-service
+    build:
+      context: .
+      dockerfile: ./Docker/identity-service/Dockerfile
+    ports:
+      - "8087:8087"
+    depends_on:
+      - postgres-identity
+    networks:
+      - mot
+
+  product-service:
+    container_name: product-service
+    build:
+      context: .
+      dockerfile: ./Docker/product-service/Dockerfile
+    ports:
+      - "8088:8088"
+    depends_on:
+      - postgres-product
+    networks:
+      - mot
+
+  notification-service:
+    container_name: notification-service
+    build:
+      context: .
+      dockerfile: ./Docker/notification-service/Dockerfile
+    depends_on:
+      - postgres-notification
+    ports:
+      - "8082:8082"
     networks:
       - mot
 

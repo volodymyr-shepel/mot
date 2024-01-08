@@ -9,9 +9,12 @@ app:
 spring:
   application:
     name : notification-service
+  rabbitmq:
+    host: rabbitmq
+    port: 5672
   cloud:
     consul:
-      host: localhost
+      host: consul
       port: 8500
       discovery:
         register: true
