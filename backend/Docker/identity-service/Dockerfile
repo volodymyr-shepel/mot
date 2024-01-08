@@ -2,7 +2,8 @@ FROM openjdk:20-jdk
 VOLUME /tmp
 ARG JAR_FILE=target/*.jar
 COPY ../../identity-service/target/identity-service-0.0.1-SNAPSHOT.jar app.jar
-ENV BASE_URL="http://nginx:80"\
+#use locahost for now, not nginx(because it is submitted on gmail
+ENV BASE_URL="http://localhost:80"\
     ISSUER="MOT"\
     JWT_SECRET="h9MzEb9WR6kz5Lhz8McrHzBCn0Z7E9nsOdfUZ3C48mA\="\
     VERIFICATION_EMAIL_SUBJECT="Verify your email"\
