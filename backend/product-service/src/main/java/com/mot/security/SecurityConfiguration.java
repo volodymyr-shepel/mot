@@ -37,7 +37,9 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests((auth) -> auth
                         .requestMatchers("/api/product/admin/**").hasAuthority(UserRole.ADMIN.name())
                         .requestMatchers("/api/product/customer/**").hasAuthority(UserRole.CUSTOMER.name())
-                        .requestMatchers("/api/product/public/**").permitAll()
+                        .requestMatchers("/api/product/products/**").permitAll()
+                        .requestMatchers("/api/product/categories/**").permitAll()
+                        .requestMatchers("/actuator/health").permitAll() // used to permit health checks
                         .anyRequest().authenticated()
                 )
                 .formLogin(AbstractAuthenticationFilterConfigurer::permitAll);

@@ -19,7 +19,6 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 
     private final JwtUtil jwtUtil;
 
-
     @Autowired
     public JwtTokenFilter(JwtUtil jwtUtil) {
         this.jwtUtil = jwtUtil;
