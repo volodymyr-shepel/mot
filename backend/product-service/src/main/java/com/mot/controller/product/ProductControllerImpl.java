@@ -13,6 +13,8 @@ import java.util.UUID;
 @RestController
 @RequestMapping(path = "/api/product/products/v1")
 public class ProductControllerImpl implements ProductController {
+
+
     private final ProductServiceImpl productServiceImpl;
 
     public ProductControllerImpl(ProductServiceImpl productServiceImpl) {
@@ -25,8 +27,8 @@ public class ProductControllerImpl implements ProductController {
     }
 
     @Override
-    public List<ProductPreviewDTO> getProductPreviewsByCategoryId(Integer categoryId) {
-        return productServiceImpl.getProductPreviewsByCategoryId(categoryId);
+    public List<ProductPreviewDTO> getProductPreviewsByCategoryId(Integer categoryId,Integer page) {
+        return productServiceImpl.getProductPreviewsByCategoryId(categoryId,page);
     }
     @Override
     public List<ProductPreviewDTO> getProductPreviewsByParentCategoryId(Integer productCategoryId) {

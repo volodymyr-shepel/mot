@@ -12,10 +12,7 @@ public interface ProductService {
 
     ProductDTO getProductById(UUID productId);
 
-
-    List<ProductPreviewDTO> getProductPreviewsByCategoryId(Integer categoryId);
-
-
+    List<ProductPreviewDTO> getProductPreviewsByCategoryId(Integer categoryId,Integer page);
     //List<ProductPreviewDTO> getProductPreviewsByParentCategoryId(Integer productCategoryId);
 
 }
