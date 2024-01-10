@@ -2,23 +2,23 @@ package com.mot.rabbitmq;
 
 
 import com.mot.dtos.NotificationDTO;
-import com.mot.service.EmailService;
+import com.mot.service.NotificationService;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class EmailConsumer {
-    private final EmailService emailService;
+    private final NotificationService notificationService;
 
     @Autowired
-    public EmailConsumer(EmailService emailService) {
-        this.emailService = emailService;
+    public EmailConsumer(NotificationService notificationService) {
+        this.notificationService = notificationService;
     }
 
     @RabbitListener(queues = "${rabbitmq.queues.email}")
     public void consumer(NotificationDTO notification){
-        emailService.sendNotification(notification);
+        notificationService.sendNotification(notification);
 
     }
 }

@@ -75,6 +75,8 @@ services:
     container_name: mot_nginx
     ports:
       - "80:80"
+    depends_on:
+      - consul
     networks:
       - mot
 
