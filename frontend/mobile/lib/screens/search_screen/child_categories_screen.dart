@@ -50,7 +50,7 @@ class ChildCategoriesScreen extends StatelessWidget {
   }
 
   void _handleCategoryTap(BuildContext context, Category category) {
-    print("Category tapped: ${category.name}");
+    print("Category tapped: ${category.id}");
     // Do whatever you need with the tapped category, e.g., navigate to another screen
   }
 }
