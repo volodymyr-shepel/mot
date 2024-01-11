@@ -31,7 +31,7 @@ public class ProductControllerImpl implements ProductController {
         return productServiceImpl.getProductPreviewsByCategoryId(categoryId,page);
     }
     @Override
-    public List<ProductPreviewDTO> getProductPreviewsByParentCategoryId(Integer productCategoryId) {
-        return productServiceImpl.getProductPreviewsByParentCategoryId(productCategoryId);
+    public List<ProductPreviewDTO> getProductPreviewsByParentCategoryId(Integer productCategoryId,Integer page) {
+        return productServiceImpl.getProductPreviewsByParentCategoryId(productCategoryId,page);
     }
 }

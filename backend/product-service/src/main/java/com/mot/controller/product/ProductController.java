@@ -19,6 +19,8 @@ public interface ProductController {
                                                            @RequestParam(required = false) Integer page);
 
     @GetMapping(path = "/pc/{productCategoryId}")
-    List<ProductPreviewDTO> getProductPreviewsByParentCategoryId(@PathVariable Integer productCategoryId);
+    List<ProductPreviewDTO> getProductPreviewsByParentCategoryId(@PathVariable Integer productCategoryId,
+                                                                 @RequestParam(required = false) Integer page);
+
 
 }

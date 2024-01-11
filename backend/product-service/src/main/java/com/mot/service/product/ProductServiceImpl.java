@@ -46,7 +46,12 @@ public class ProductServiceImpl implements ProductService {
                 .collect(Collectors.toList());
     }
 
-    public List<ProductPreviewDTO> getProductPreviewsByParentCategoryId(Integer productCategoryId) {
-        return null;
+    public List<ProductPreviewDTO> getProductPreviewsByParentCategoryId(Integer productCategoryId,Integer page) {
+        Pageable pageable = PageRequest.of(page, PAGE_SIZE);
+        Page<Product> productPage = productRepository.findAllByCategoryParentId(productCategoryId, pageable);
+
+        return productPage.getContent().stream()
+                .map(Product::convertToProductPreviewDTO)
+                .collect(Collectors.toList());
     }
 }
