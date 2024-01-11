@@ -5,9 +5,9 @@ spring:
   application:
     name: identity-service
   datasource:
-    username: admin
-    password: root
-    url: jdbc:postgresql://localhost:5440/identity
+    username: ${DATASOURCE_USERNAME}
+    password: ${DATASOURCE_PASSWORD}
+    url: ${DATASOURCE_URL}
   jpa:
     hibernate:
       ddl-auto: update
@@ -18,7 +18,7 @@ spring:
     show-sql: true
   cloud:
     consul:
-      host: localhost
+      host: consul
       port: 8500
       discovery:
         register: true
@@ -26,7 +26,8 @@ spring:
         service-name: identity-service
         instance-id: ${spring.application.name}:${server.port}
   rabbitmq:
-    addresses: localhost:5672
+    host: rabbitmq
+    port: 5672
 
 app:
   config:

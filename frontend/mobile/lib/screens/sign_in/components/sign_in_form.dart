@@ -136,7 +136,7 @@ class _SignFormState extends State<SignForm> {
               Padding(
                 padding: const EdgeInsets.only(left: 10),
                 child: GestureDetector(
-                  onTap: () => context.go(ForgotPasswordScreen.routeName),
+                  onTap: () => context.push(ForgotPasswordScreen.routeName),
                   child: const Text(
                     "Forgot Password?",
                     style: TextStyle(

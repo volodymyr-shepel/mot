@@ -27,7 +27,7 @@ class _SearchScreenState extends State<SearchScreen> {
     }
   // Maybe change it somehow so it does not take too much time
   void _fetchCategories() async {
-    const String apiUrl = '$baseUrl/api/product/public/categoryHierarchy';
+    const String apiUrl = '$baseUrl/api/product/categories/v1/categoryHierarchy';
      try {
       final response = await http.get(Uri.parse(apiUrl));
 
