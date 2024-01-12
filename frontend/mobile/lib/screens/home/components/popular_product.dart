@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:mot/components/product_card.dart';
 import 'package:http/http.dart' as http;
 import 'package:mot/constants.dart';
-import 'package:mot/models/Product.dart';
+import 'package:mot/models/cart.dart';
+import 'package:mot/models/product.dart';
 import 'package:mot/models/category.dart';
 import 'package:mot/screens/home/home_screen.dart';
 import 'package:mot/screens/home/product_list_screen.dart';
+import 'package:provider/provider.dart';
 import '../../../size_config.dart';
 import 'section_title.dart';
 
@@ -79,7 +81,10 @@ class _PopularProducts extends State<PopularProducts> {
                 (index) {
                   return ProductCard(
                       product: products[index],
-                      press: () {Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomeScreen()));},
+                      press: () {
+                        CartProvider cartProvider = Provider.of<CartProvider>(context, listen: false);
+                        cartProvider.addToCart(Cart(product: products[index], numOfItem: 1));
+                      },
                       );
                 },
               ),

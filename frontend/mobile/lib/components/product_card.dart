@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mot/components/secure_storage_manager.dart';
-import 'package:mot/models/Product.dart';
+import 'package:mot/models/product.dart';
 
 import '../constants.dart';
 import '../size_config.dart';
@@ -50,7 +50,7 @@ class ProductCard extends StatelessWidget {
               const SizedBox(height: 10),
               Text(
                 product.name,
-                style: TextStyle(color: kTextColor),
+                style: TextStyle(color: kSecondaryColor),
                 maxLines: 2,
               ),
               Row(

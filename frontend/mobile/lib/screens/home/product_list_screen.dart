@@ -3,11 +3,13 @@ import 'package:http/http.dart' as http;
 import 'package:mot/components/product_card.dart';
 import 'package:mot/constants.dart';
 import 'package:mot/helper/keyboard.dart';
+import 'package:mot/models/cart.dart';
 import 'dart:convert';
 
-import 'package:mot/models/Product.dart';
+import 'package:mot/models/product.dart';
 import 'package:mot/models/category.dart';
 import 'package:mot/size_config.dart';
+import 'package:provider/provider.dart';
 
 class ProductListScreen extends StatefulWidget {
   final Category category;
@@ -108,7 +110,8 @@ class _ProductListScreenState extends State<ProductListScreen> {
                     child: ProductCard(
                       product: products[firstProductIndex],
                       press: () {
-                        // TODO: Handle product card tap for the first product
+                        CartProvider cartProvider = Provider.of<CartProvider>(context, listen: false);
+                        cartProvider.addToCart(Cart(product: products[firstProductIndex], numOfItem: 1));
                       },
                     ),
                   ),
@@ -118,6 +121,8 @@ class _ProductListScreenState extends State<ProductListScreen> {
                         ? ProductCard(
                             product: products[secondProductIndex],
                             press: () {
+                              CartProvider cartProvider = Provider.of<CartProvider>(context, listen: false);
+                              cartProvider.addToCart(Cart(product: products[secondProductIndex], numOfItem: 1));
                               // TODO: Handle product card tap for the second product
                             },
                           )
