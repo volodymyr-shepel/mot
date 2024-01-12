@@ -57,7 +57,7 @@ class ProductCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "\$${product.price}",
+                    "${product.price.toStringAsFixed(2)} zł.",
                     style: TextStyle(
                       fontSize: SizeConfig(context: context).getProportionateScreenWidth(18),
                       fontWeight: FontWeight.w600,
