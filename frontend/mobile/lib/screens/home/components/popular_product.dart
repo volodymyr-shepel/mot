@@ -7,6 +7,7 @@ import 'package:mot/constants.dart';
 import 'package:mot/models/Product.dart';
 import 'package:mot/models/category.dart';
 import 'package:mot/screens/home/home_screen.dart';
+import 'package:mot/screens/home/product_list_screen.dart';
 import '../../../size_config.dart';
 import 'section_title.dart';
 
@@ -65,7 +66,7 @@ class _PopularProducts extends State<PopularProducts> {
               EdgeInsets.symmetric(horizontal: SizeConfig(context: context).getProportionateScreenWidth(20)),
           child: SectionTitle(
             title: "Popular Products in\n${widget.selectedParentCategory.name}", 
-            press: () {},
+            press: () {Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProductListScreen(widget.selectedParentCategory, false)));},
             ),
         ),
         SizedBox(height: SizeConfig(context: context).getProportionateScreenWidth(20)),

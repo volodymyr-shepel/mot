@@ -10,8 +10,9 @@ import 'package:mot/models/category.dart';
 
 class ProductListScreen extends StatefulWidget {
   final Category category;
+  final bool isParentCategory;
 
-  ProductListScreen(this.category);
+  ProductListScreen(this.category, this.isParentCategory);
 
   @override
   _ProductListScreenState createState() => _ProductListScreenState();
@@ -35,7 +36,9 @@ class _ProductListScreenState extends State<ProductListScreen> {
       isLoading = true;
     });
 
-    final url = Uri.parse('$baseUrl/api/product/products/v1/c/${widget.category.id}?page=$currentPage');
+    final cat = widget.isParentCategory ? "pc" : "c";
+
+    final url = Uri.parse('$baseUrl/api/product/products/v1/$cat/${widget.category.id}?page=$currentPage');
     
     try {
       final response = await http.get(url);
