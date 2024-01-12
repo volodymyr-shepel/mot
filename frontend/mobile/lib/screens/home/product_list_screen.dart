@@ -7,6 +7,7 @@ import 'dart:convert';
 
 import 'package:mot/models/Product.dart';
 import 'package:mot/models/category.dart';
+import 'package:mot/size_config.dart';
 
 class ProductListScreen extends StatefulWidget {
   final Category category;
@@ -90,17 +91,42 @@ class _ProductListScreenState extends State<ProductListScreen> {
           return false;
         },
         child: ListView.builder(
-          itemCount: products.length + 1, // +1 for loading indicator
+          cacheExtent: 100,
+          itemExtent: 250,
+
+          itemCount: (products.length / 2).ceil() + 1, // +1 for loading indicator
           itemBuilder: (context, index) {
-            if (index == products.length) {
+            if (index == (products.length / 2).ceil())  {
               return isLoading ? CircularProgressIndicator() : Container();
             } else {
-              return ProductCard(
-                product: products[index],
-                press: () {
-                  //TODO: Handle product card tap
-                },
+              int firstProductIndex = index * 2;
+              int secondProductIndex = (index * 2) + 1;
+              
+              return Row(
+                children: [
+                  Expanded(
+                    child: ProductCard(
+                      product: products[firstProductIndex],
+                      press: () {
+                        // TODO: Handle product card tap for the first product
+                      },
+                    ),
+                  ),
+                  SizedBox(width: 10), // Add some spacing between products
+                  Expanded(
+                    child: secondProductIndex < products.length
+                        ? ProductCard(
+                            product: products[secondProductIndex],
+                            press: () {
+                              // TODO: Handle product card tap for the second product
+                            },
+                          )
+                        : Container(),
+                  ),
+                  SizedBox(width: SizeConfig(context: context).getProportionateScreenWidth(20))
+                ],
               );
+
             }
           },
           // Trigger fetchData when reaching the end of the list
