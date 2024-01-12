@@ -63,7 +63,10 @@ class _PopularProducts extends State<PopularProducts> {
         Padding(
           padding:
               EdgeInsets.symmetric(horizontal: SizeConfig(context: context).getProportionateScreenWidth(20)),
-          child: SectionTitle(title: "Popular Products in ${widget.selectedParentCategory.name}", press: () {}),
+          child: SectionTitle(
+            title: "Popular Products in\n${widget.selectedParentCategory.name}", 
+            press: () {},
+            ),
         ),
         SizedBox(height: SizeConfig(context: context).getProportionateScreenWidth(20)),
         SingleChildScrollView(
