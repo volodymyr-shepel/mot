@@ -40,7 +40,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
       final response = await http.get(url);
 
       if (response.statusCode == 200) {
-        final List<dynamic> data = json.decode(response.body);
+        final List<dynamic> data = json.decode(utf8.decode(response.bodyBytes));
 
         List<Product> newProducts = data.map((item) => Product.fromJson(item)).toList();
 
