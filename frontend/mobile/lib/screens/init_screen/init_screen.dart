@@ -38,28 +38,6 @@ class _InitScreenState extends State<InitScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: Text(
-  (() {
-    switch (currentSelectedIndex) {
-      case 0:
-        return 'Home';
-      case 1:
-        return 'Search';
-      case 2:
-        return 'Favorite';
-      case 3:
-        return 'Cart';
-      case 4:
-        return 'Profile';
-      default:
-        return 'Other';
-    }
-  })(),// Adjust titles accordingly
-          style: TextStyle(fontSize: 20.0, color: Colors.white),
-        ),
-      ),
       body: widget.child,
       bottomNavigationBar: CustomBottomNavigationBar(
         currentIndex: currentSelectedIndex,

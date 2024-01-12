@@ -52,20 +52,28 @@ class _SearchScreenState extends State<SearchScreen> {
   
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      padding: const EdgeInsets.symmetric(vertical: 20),
-      child: Column(
-        children: [
-          const SearchField(
-            hintText: "Czego szukasz?",
-            keyboardType: TextInputType.text, // Set the keyboard type,
-            svgIconPath: 'assets/icons/Search Icon.svg',
-          ),
-          const SizedBox(height: 15),
+    return Scaffold(
+      appBar: AppBar(
+        title : const Text(
+          "Search",
+          style: TextStyle(fontSize: 20.0,color: Colors.white),
+        )
+      ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(vertical: 20),
+        child: Column(
+          children: [
+            const SearchField(
+              hintText: "Czego szukasz?",
+              keyboardType: TextInputType.text,
+              svgIconPath: 'assets/icons/Search Icon.svg',
+            ),
+            const SizedBox(height: 15),
 
-          for (var category in parentCategories)
-            CategoryWidget(category: category, onCategoryTap: _handleCategoryTap),
-        ],
+            for (var category in parentCategories)
+              CategoryWidget(category: category, onCategoryTap: _handleCategoryTap),
+          ],
+        ),
       ),
     );
   }

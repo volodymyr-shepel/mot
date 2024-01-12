@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:mot/components/product_card.dart';
 import 'package:mot/constants.dart';
+import 'package:mot/helper/keyboard.dart';
 import 'dart:convert';
 
 import 'package:mot/models/Product.dart';
@@ -66,7 +67,15 @@ class _ProductListScreenState extends State<ProductListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Product List'),
+        title: const Text("Product List",
+        style: TextStyle(fontSize: 20.0, color: Colors.white),),
+        leading: IconButton(
+          onPressed: () {
+            KeyboardUtil.hideKeyboard(context);
+            Navigator.pop(context);
+          },
+          icon: const Icon(Icons.arrow_back_ios),
+        ),
       ),
       body: NotificationListener<ScrollNotification>(
         onNotification: (ScrollNotification scrollInfo) {

@@ -15,17 +15,17 @@ class ChildCategoriesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text(parentCategory.name,
-      //   style: TextStyle(fontSize: 20.0, color: Colors.white),),
-      //   leading: IconButton(
-      //     onPressed: () {
-      //       KeyboardUtil.hideKeyboard(context);
-      //       Navigator.pop(context);
-      //     },
-      //     icon: const Icon(Icons.arrow_back_ios),
-      //   ),
-      // ),
+      appBar: AppBar(
+        title: Text(parentCategory.name,
+        style: TextStyle(fontSize: 20.0, color: Colors.white),),
+        leading: IconButton(
+          onPressed: () {
+            KeyboardUtil.hideKeyboard(context);
+            Navigator.pop(context);
+          },
+          icon: const Icon(Icons.arrow_back_ios),
+        ),
+      ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(vertical: 20),
         child: Column(
