@@ -66,7 +66,7 @@ class _PopularProducts extends State<PopularProducts> {
               EdgeInsets.symmetric(horizontal: SizeConfig(context: context).getProportionateScreenWidth(20)),
           child: SectionTitle(
             title: "Popular Products in\n${widget.selectedParentCategory.name}", 
-            press: () {Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProductListScreen(widget.selectedParentCategory, false)));},
+            press: () {Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProductListScreen(widget.selectedParentCategory, true)));},
             ),
         ),
         SizedBox(height: SizeConfig(context: context).getProportionateScreenWidth(20)),
