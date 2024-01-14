@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mot/components/product_card.dart';
 import 'package:mot/models/Product.dart';
+import 'package:mot/screens/product_details/details_screen.dart';
 
 import '../../../size_config.dart';
 import 'section_title.dart';
@@ -22,11 +23,24 @@ class PopularProducts extends StatelessWidget {
             children: [
               ...List.generate(
                 demoProducts.length,
-                (index) {
-                  if (demoProducts[index].isPopular)
-                    return ProductCard(product: demoProducts[index]);
+                    (index) {
+                  if (demoProducts[index].isPopular) {
+                    return GestureDetector(onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => DetailsScreen(),
+                          settings: RouteSettings(
+                            arguments: ProductDetailsArguments(product: demoProducts[index]),
+                          ),
+                        ),
+                      );
+                    },
+                      child: ProductCard(product: demoProducts[index]),
+                    );
+                  }
 
-                  return SizedBox
+                  return const SizedBox
                       .shrink(); // here by default width and height is 0
                 },
               ),
