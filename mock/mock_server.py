@@ -81,5 +81,12 @@ def get_category__products(category):
         category_data = json.load(file)
     return jsonify(category_data), 200
 
+@app.route('/api/product/products/v1/categoryWeb', methods=['GET'])
+def get_categoryWeb__products():
+    # Load category-specific data from file
+    with open('categoryWeb.json', 'r', encoding='utf-8') as file:
+        category_data = json.load(file)
+    return jsonify(category_data), 200
+
 if __name__ == '__main__':
-    app.run(debug=True, host='192.168.137.1', port=80) #host='192.168.0.101', port=80)
+    app.run(debug=True, host='192.168.0.52', port=80) #host='192.168.0.101', port=80)
