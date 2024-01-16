@@ -16,7 +16,8 @@ class ProductImages extends StatefulWidget {
 }
 
 class _ProductImagesState extends State<ProductImages> {
-  int selectedImage = 0;
+  int selectedImageIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -25,25 +26,26 @@ class _ProductImagesState extends State<ProductImages> {
           width: 238,
           child: AspectRatio(
             aspectRatio: 1,
-            child: Image.asset(widget.product.images[selectedImage]),
+            child: Image.network(widget.product.imageUrl),
           ),
         ),
         // SizedBox(height: 20),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ...List.generate(
-              widget.product.images.length,
-                  (index) => SmallProductImage(
-                isSelected: index == selectedImage,
-                press: () {
-                  setState(() {
-                    selectedImage = index;
-                  });
-                },
-                image: widget.product.images[index],
-              ),
-            ),
+            ...List.filled(4, widget.product.imageUrl)
+                .asMap()
+                .map((index, imageUrl) => MapEntry(
+                    index,
+                    SmallProductImage(
+                        isSelected: selectedImageIndex == index,
+                        press: () {
+                          setState(() {
+                            selectedImageIndex = index;
+                          });
+                        },
+                        imageUrl: imageUrl)))
+                .values
           ],
         )
       ],
@@ -54,13 +56,13 @@ class _ProductImagesState extends State<ProductImages> {
 class SmallProductImage extends StatefulWidget {
   const SmallProductImage(
       {super.key,
-        required this.isSelected,
-        required this.press,
-        required this.image});
+      required this.isSelected,
+      required this.press,
+      required this.imageUrl});
 
   final bool isSelected;
   final VoidCallback press;
-  final String image;
+  final String imageUrl;
 
   @override
   State<SmallProductImage> createState() => _SmallProductImageState();
@@ -83,7 +85,7 @@ class _SmallProductImageState extends State<SmallProductImage> {
           border: Border.all(
               color: kPrimaryColor.withOpacity(widget.isSelected ? 1 : 0)),
         ),
-        child: Image.asset(widget.image),
+        child: Image.network(widget.imageUrl),
       ),
     );
   }

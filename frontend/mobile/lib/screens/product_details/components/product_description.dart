@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:mot/models/product.dart';
 
 import '../../../constants.dart';
-import '../../../models/Product.dart';
 
 class ProductDescription extends StatefulWidget {
   final Product product;
@@ -37,7 +37,7 @@ class _ProductDescriptionState extends State<ProductDescription> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Text(
-                      widget.product.title,
+                      widget.product.name,
                       style: const TextStyle(
                           fontWeight: FontWeight.bold, color: Colors.white, fontSize: 20),
                     ),
@@ -81,8 +81,8 @@ class _ProductDescriptionState extends State<ProductDescription> {
         Padding(
           padding: const EdgeInsets.only(left: 20, right: 64, top: 15),
           child: Text(
-            widget.product.description,
-            maxLines: isExpanded ? null : 2,
+            widget.product.description??"",
+            maxLines: isExpanded ? null : 4,
             overflow: TextOverflow.fade,
           ),
         ),

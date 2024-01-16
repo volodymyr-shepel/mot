@@ -2,20 +2,15 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:mot/components/product_card.dart';
-<<<<<<< HEAD
-import 'package:mot/models/Product.dart';
-import 'package:mot/screens/product_details/details_screen.dart';
-
-=======
 import 'package:http/http.dart' as http;
 import 'package:mot/constants.dart';
 import 'package:mot/models/cart.dart';
-import 'package:mot/models/product.dart';
 import 'package:mot/models/category.dart';
+import 'package:mot/models/product.dart';
 import 'package:mot/screens/home/home_screen.dart';
 import 'package:mot/screens/home/product_list_screen.dart';
+import 'package:mot/screens/product_details/details_screen.dart';
 import 'package:provider/provider.dart';
->>>>>>> f2e1b213a68bcd1fff7023802bc9adf100a13dc5
 import '../../../size_config.dart';
 import 'section_title.dart';
 
@@ -41,7 +36,7 @@ class _PopularProducts extends State<PopularProducts> {
   // Maybe change it somehow so it does not take too much time
   void _fetchProducts() async {
     final url = Uri.parse('$baseUrl/api/product/products/v1/pc/${widget.selectedParentCategory.id}?page=1');
-    
+
     try {
       final response = await http.get(url);
 
@@ -73,7 +68,7 @@ class _PopularProducts extends State<PopularProducts> {
           padding:
               EdgeInsets.symmetric(horizontal: SizeConfig(context: context).getProportionateScreenWidth(20)),
           child: SectionTitle(
-            title: "Popular Products in\n${widget.selectedParentCategory.name}", 
+            title: "Popular Products in\n${widget.selectedParentCategory.name}",
             press: () {Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProductListScreen(widget.selectedParentCategory, true)));},
             ),
         ),
@@ -83,38 +78,18 @@ class _PopularProducts extends State<PopularProducts> {
           child: Row(
             children: [
               ...List.generate(
-<<<<<<< HEAD
-                demoProducts.length,
-                    (index) {
-                  if (demoProducts[index].isPopular) {
-                    return GestureDetector(onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => DetailsScreen(),
-                          settings: RouteSettings(
-                            arguments: ProductDetailsArguments(product: demoProducts[index]),
-                          ),
-                        ),
-                      );
-                    },
-                      child: ProductCard(product: demoProducts[index]),
-                    );
-                  }
-
-                  return const SizedBox
-                      .shrink(); // here by default width and height is 0
-=======
                 products.length,
                 (index) {
                   return ProductCard(
                       product: products[index],
-                      press: () {
-                        CartProvider cartProvider = Provider.of<CartProvider>(context, listen: false);
-                        cartProvider.addToCart(Cart(product: products[index], numOfItem: 1));
-                      },
+                    press: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => DetailsScreen(productPreview: products[index]),
+                        ),
                       );
->>>>>>> f2e1b213a68bcd1fff7023802bc9adf100a13dc5
+                    },
+                      );
                 },
               ),
               SizedBox(width: SizeConfig(context: context).getProportionateScreenWidth(20)),

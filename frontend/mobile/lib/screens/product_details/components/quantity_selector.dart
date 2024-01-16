@@ -1,14 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class QuantitySelector extends StatefulWidget {
-  @override
-  _QuantitySelectorState createState() => _QuantitySelectorState();
-}
+class QuantitySelector extends StatelessWidget {
+  final VoidCallback onIncrement;
+  final VoidCallback onDecrement;
+  final int value;
 
-class _QuantitySelectorState extends State<QuantitySelector> {
-  int quantity = 1;
-
+  const QuantitySelector({super.key, required this.onIncrement, required this.onDecrement, required this.value});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -22,25 +20,15 @@ class _QuantitySelectorState extends State<QuantitySelector> {
           children: <Widget>[
             IconButton(
               icon: Icon(Icons.remove),
-              onPressed: () {
-                if (quantity > 1) {
-                  setState(() {
-                    quantity--;
-                  });
-                }
-              },
+              onPressed: onDecrement
             ),
             Text(
-              '$quantity',
+              '$value',
               style: TextStyle(color: Colors.black, fontSize: 18), // Ensure the color contrasts with the background
             ),
             IconButton(
               icon: Icon(Icons.add),
-              onPressed: () {
-                setState(() {
-                  quantity++;
-                });
-              },
+              onPressed: onIncrement
             ),
           ],
         ),

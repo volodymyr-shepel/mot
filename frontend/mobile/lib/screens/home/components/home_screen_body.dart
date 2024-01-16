@@ -63,7 +63,7 @@ class _HomeScreenBody extends State<HomeScreenBody> {
             SizedBox(height: SizeConfig(context: context).getProportionateScreenHeight(20)),
             DiscountBanner(),
             Categories(),
-            //SpecialOffers(),
+            SpecialOffers(),
 
             
             SizedBox(height: SizeConfig(context: context).getProportionateScreenHeight(20)),
