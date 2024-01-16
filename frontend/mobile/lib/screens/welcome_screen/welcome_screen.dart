@@ -86,8 +86,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       ElevatedButton(
                         onPressed: () {
                           
-                          context.push(SignInScreen.routeName); // TODO : CHANGE TO SIGN IN
-                          //context.go(HomeScreen.routeName); // TODO : CHANGE TO SIGN IN
+                          // context.push(SignInScreen.routeName); // TODO : CHANGE TO SIGN IN
+                          context.go(HomeScreen.routeName); // TODO : CHANGE TO SIGN IN
                         },
                         child: const Text("Continue"),
                       ),
