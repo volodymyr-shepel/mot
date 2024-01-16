@@ -1,8 +1,9 @@
 from flask import Flask, jsonify
+from flask_cors import CORS
 import json
 
 app = Flask(__name__)
-
+CORS(app)
 # Mock data for response
 access_token = "sample_access_token"
 refresh_token = "sample_refresh_token"
@@ -46,11 +47,13 @@ product_response = {
 
 @app.route('/api/auth/user/v1/signIn', methods=['POST'])
 def sign_in():
-    return jsonify({"accessToken": access_token, "refreshToken": refresh_token}), 200
+    response = jsonify({"accessToken": access_token, "refreshToken": refresh_token})
+    return response, 200
 
 @app.route('/api/auth/user/v1/validateCredentials', methods=['POST'])
 def validate_credentials():
-    return jsonify(credentials_verification_response), 200
+    response = jsonify(credentials_verification_response)
+    return response, 200
 
 @app.route('/api/auth/user/v1/signUp', methods=['POST'])
 def sign_up():
@@ -58,7 +61,8 @@ def sign_up():
 
 @app.route('/api/product/products/v1/p/<any_uid>', methods=['GET'])
 def get_product(any_uid):
-    return jsonify(product_response), 200
+    response = jsonify(product_response)
+    return response, 200
 
 @app.route('/api/product/categories/v1/categoryHierarchy', methods=['GET'])
 def get_category_hierarchy():
