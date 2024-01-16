@@ -1,0 +1,693 @@
+[
+    {
+        "id": 5,
+        "parentCategoryId": null,
+        "name": "Podzespoły komputerowe",
+        "childCategories": [
+            {
+                "id": 2665,
+                "parentCategoryId": 5,
+                "name": "Karty przechwytujące wideo",
+                "childCategories": []
+            },
+            {
+                "id": 388,
+                "parentCategoryId": 5,
+                "name": "Obudowy komputerowe",
+                "childCategories": []
+            },
+            {
+                "id": 2887,
+                "parentCategoryId": 5,
+                "name": "Podzespoły serwerowe",
+                "childCategories": []
+            },
+            {
+                "id": 89,
+                "parentCategoryId": 5,
+                "name": "Dyski twarde HDD i SSD",
+                "childCategories": []
+            },
+            {
+                "id": 14,
+                "parentCategoryId": 5,
+                "name": "Płyty główne",
+                "childCategories": []
+            },
+            {
+                "id": 2493,
+                "parentCategoryId": 5,
+                "name": "Zasilacze komputerowe",
+                "childCategories": []
+            },
+            {
+                "id": 397,
+                "parentCategoryId": 5,
+                "name": "Modding PC",
+                "childCategories": []
+            },
+            {
+                "id": 455,
+                "parentCategoryId": 5,
+                "name": "Karty sieciowe",
+                "childCategories": []
+            },
+            {
+                "id": 345,
+                "parentCategoryId": 5,
+                "name": "Karty graficzne",
+                "childCategories": []
+            },
+            {
+                "id": 11,
+                "parentCategoryId": 5,
+                "name": "Procesory",
+                "childCategories": []
+            },
+            {
+                "id": 28,
+                "parentCategoryId": 5,
+                "name": "Pamięci RAM",
+                "childCategories": []
+            },
+            {
+                "id": 2599,
+                "parentCategoryId": 5,
+                "name": "Chłodzenia komputerowe",
+                "childCategories": []
+            },
+            {
+                "id": 1461,
+                "parentCategoryId": 5,
+                "name": "Napędy optyczne",
+                "childCategories": []
+            }
+        ]
+    },
+    {
+        "id": 64,
+        "parentCategoryId": null,
+        "name": "Smarthome i lifestyle",
+        "childCategories": [
+            {
+                "id": 2332,
+                "parentCategoryId": 64,
+                "name": "Kamery cyfrowe",
+                "childCategories": []
+            },
+            {
+                "id": 3117,
+                "parentCategoryId": 64,
+                "name": "Akcesoria rowerowe",
+                "childCategories": []
+            },
+            {
+                "id": 1936,
+                "parentCategoryId": 64,
+                "name": "Obiektywy",
+                "childCategories": []
+            },
+            {
+                "id": 1930,
+                "parentCategoryId": 64,
+                "name": "Torby i pokrowce na aparat",
+                "childCategories": []
+            },
+            {
+                "id": 2406,
+                "parentCategoryId": 64,
+                "name": "Inteligentny dom",
+                "childCategories": []
+            },
+            {
+                "id": 3300,
+                "parentCategoryId": 64,
+                "name": "Fotele do biura",
+                "childCategories": []
+            },
+            {
+                "id": 3467,
+                "parentCategoryId": 64,
+                "name": "Zdrowie i ergonomia",
+                "childCategories": []
+            },
+            {
+                "id": 1937,
+                "parentCategoryId": 64,
+                "name": "Lampy błyskowe i studyjne",
+                "childCategories": []
+            },
+            {
+                "id": 3027,
+                "parentCategoryId": 64,
+                "name": "Drony i akcesoria",
+                "childCategories": []
+            },
+            {
+                "id": 1506,
+                "parentCategoryId": 64,
+                "name": "Statywy i głowice",
+                "childCategories": []
+            },
+            {
+                "id": 3026,
+                "parentCategoryId": 64,
+                "name": "Kamery sportowe i akcesoria",
+                "childCategories": []
+            },
+            {
+                "id": 3084,
+                "parentCategoryId": 64,
+                "name": "Monitoring",
+                "childCategories": []
+            },
+            {
+                "id": 3173,
+                "parentCategoryId": 64,
+                "name": "Akcesoria motocyklowe",
+                "childCategories": []
+            },
+            {
+                "id": 3028,
+                "parentCategoryId": 64,
+                "name": "Akcesoria samochodowe",
+                "childCategories": []
+            },
+            {
+                "id": 156,
+                "parentCategoryId": 64,
+                "name": "Aparaty fotograficzne",
+                "childCategories": []
+            },
+            {
+                "id": 2581,
+                "parentCategoryId": 64,
+                "name": "Stabilizatory obrazu",
+                "childCategories": []
+            },
+            {
+                "id": 2488,
+                "parentCategoryId": 64,
+                "name": "Wyposażenie studia",
+                "childCategories": []
+            },
+            {
+                "id": 3451,
+                "parentCategoryId": 64,
+                "name": "Akcesoria do urządzeń smart",
+                "childCategories": []
+            }
+        ]
+    },
+    {
+        "id": 12,
+        "parentCategoryId": null,
+        "name": "Akcesoria",
+        "childCategories": [
+            {
+                "id": 3375,
+                "parentCategoryId": 12,
+                "name": "Akcesoria do klawiatur",
+                "childCategories": []
+            },
+            {
+                "id": 100,
+                "parentCategoryId": 12,
+                "name": "Nośniki danych",
+                "childCategories": []
+            },
+            {
+                "id": 439,
+                "parentCategoryId": 12,
+                "name": "Dyski zewnętrzne HDD",
+                "childCategories": []
+            },
+            {
+                "id": 396,
+                "parentCategoryId": 12,
+                "name": "Akcesoria do dysków",
+                "childCategories": []
+            },
+            {
+                "id": 2587,
+                "parentCategoryId": 12,
+                "name": "Pojazdy elektryczne",
+                "childCategories": []
+            },
+            {
+                "id": 48,
+                "parentCategoryId": 12,
+                "name": "Listwy zasilające",
+                "childCategories": []
+            },
+            {
+                "id": 2737,
+                "parentCategoryId": 12,
+                "name": "Narzędzia serwisowe i sieciowe",
+                "childCategories": []
+            },
+            {
+                "id": 408,
+                "parentCategoryId": 12,
+                "name": "Akcesoria foto-video",
+                "childCategories": []
+            },
+            {
+                "id": 2464,
+                "parentCategoryId": 12,
+                "name": "Zasilanie",
+                "childCategories": []
+            },
+            {
+                "id": 583,
+                "parentCategoryId": 12,
+                "name": "Czytniki kart pamięci",
+                "childCategories": []
+            },
+            {
+                "id": 39,
+                "parentCategoryId": 12,
+                "name": "Środki czyszczące",
+                "childCategories": []
+            },
+            {
+                "id": 3443,
+                "parentCategoryId": 12,
+                "name": "Usługi dodatkowe",
+                "childCategories": []
+            },
+            {
+                "id": 2779,
+                "parentCategoryId": 12,
+                "name": "Akcesoria do myszek",
+                "childCategories": []
+            },
+            {
+                "id": 46,
+                "parentCategoryId": 12,
+                "name": "Kable i przejściówki",
+                "childCategories": []
+            },
+            {
+                "id": 2987,
+                "parentCategoryId": 12,
+                "name": "Gadżety",
+                "childCategories": []
+            },
+            {
+                "id": 2345,
+                "parentCategoryId": 12,
+                "name": "Akcesoria do kontrolerów",
+                "childCategories": []
+            },
+            {
+                "id": 3341,
+                "parentCategoryId": 12,
+                "name": "Dyski zewnętrzne SSD",
+                "childCategories": []
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "parentCategoryId": null,
+        "name": "Smartfony i smartwatche",
+        "childCategories": [
+            {
+                "id": 3465,
+                "parentCategoryId": 4,
+                "name": "Ładowarki i powerbanki",
+                "childCategories": []
+            },
+            {
+                "id": 1590,
+                "parentCategoryId": 4,
+                "name": "Smartfony i telefony",
+                "childCategories": []
+            },
+            {
+                "id": 2748,
+                "parentCategoryId": 4,
+                "name": "Słuchawki True Wireless",
+                "childCategories": []
+            },
+            {
+                "id": 979,
+                "parentCategoryId": 4,
+                "name": "Karty pamięci microSD",
+                "childCategories": []
+            },
+            {
+                "id": 2519,
+                "parentCategoryId": 4,
+                "name": "Czytniki ebook",
+                "childCategories": []
+            },
+            {
+                "id": 1592,
+                "parentCategoryId": 4,
+                "name": "Akcesoria GSM",
+                "childCategories": []
+            },
+            {
+                "id": 1924,
+                "parentCategoryId": 4,
+                "name": "Inteligentne zegarki",
+                "childCategories": []
+            },
+            {
+                "id": 2287,
+                "parentCategoryId": 4,
+                "name": "Akcesoria do tabletów",
+                "childCategories": []
+            },
+            {
+                "id": 133,
+                "parentCategoryId": 4,
+                "name": "Pamięci flash",
+                "childCategories": []
+            },
+            {
+                "id": 3464,
+                "parentCategoryId": 4,
+                "name": "Ochrona na telefon",
+                "childCategories": []
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "parentCategoryId": null,
+        "name": "Laptopy i komputery",
+        "childCategories": [
+            {
+                "id": 1173,
+                "parentCategoryId": 2,
+                "name": "Stacje dokujące do laptopów",
+                "childCategories": []
+            },
+            {
+                "id": 172,
+                "parentCategoryId": 2,
+                "name": "Torby i etui",
+                "childCategories": []
+            },
+            {
+                "id": 3524,
+                "parentCategoryId": 2,
+                "name": "Laptopy biznesowe",
+                "childCategories": []
+            },
+            {
+                "id": 2158,
+                "parentCategoryId": 2,
+                "name": "Laptopy 2 w 1",
+                "childCategories": []
+            },
+            {
+                "id": 49,
+                "parentCategoryId": 2,
+                "name": "Programy",
+                "childCategories": []
+            },
+            {
+                "id": 1663,
+                "parentCategoryId": 2,
+                "name": "Tablety",
+                "childCategories": []
+            },
+            {
+                "id": 159,
+                "parentCategoryId": 2,
+                "name": "Laptopy/Notebooki/Ultrabooki",
+                "childCategories": []
+            },
+            {
+                "id": 1033,
+                "parentCategoryId": 2,
+                "name": "Akcesoria do laptopów",
+                "childCategories": []
+            },
+            {
+                "id": 161,
+                "parentCategoryId": 2,
+                "name": "Akcesoria komputerowe",
+                "childCategories": []
+            },
+            {
+                "id": 175,
+                "parentCategoryId": 2,
+                "name": "Komputery stacjonarne",
+                "childCategories": []
+            },
+            {
+                "id": 3309,
+                "parentCategoryId": 2,
+                "name": "Serwery i storage",
+                "childCategories": []
+            },
+            {
+                "id": 3041,
+                "parentCategoryId": 2,
+                "name": "Komputery G4M3R",
+                "childCategories": []
+            }
+        ]
+    },
+    {
+        "id": 8,
+        "parentCategoryId": null,
+        "name": "TV i audio",
+        "childCategories": [
+            {
+                "id": 1879,
+                "parentCategoryId": 8,
+                "name": "Kino domowe",
+                "childCategories": []
+            },
+            {
+                "id": 1425,
+                "parentCategoryId": 8,
+                "name": "Odtwarzacze multimedialne",
+                "childCategories": []
+            },
+            {
+                "id": 2948,
+                "parentCategoryId": 8,
+                "name": "Kolumny głośnikowe",
+                "childCategories": []
+            },
+            {
+                "id": 3093,
+                "parentCategoryId": 8,
+                "name": "Mikrofony i akcesoria",
+                "childCategories": []
+            },
+            {
+                "id": 7,
+                "parentCategoryId": 8,
+                "name": "Karty dźwiękowe",
+                "childCategories": [
+                    {
+                        "id": 392,
+                        "parentCategoryId": 7,
+                        "name": "Kontrolery do gier",
+                        "childCategories": []
+                    },
+                    {
+                        "id": 2372,
+                        "parentCategoryId": 7,
+                        "name": "Podzespoły do gier",
+                        "childCategories": []
+                    },
+                    {
+                        "id": 3466,
+                        "parentCategoryId": 7,
+                        "name": "Meble gamingowe",
+                        "childCategories": []
+                    },
+                    {
+                        "id": 2371,
+                        "parentCategoryId": 7,
+                        "name": "Monitory dla graczy",
+                        "childCategories": []
+                    },
+                    {
+                        "id": 2438,
+                        "parentCategoryId": 7,
+                        "name": "Fotele dla graczy",
+                        "childCategories": []
+                    },
+                    {
+                        "id": 2384,
+                        "parentCategoryId": 7,
+                        "name": "Konsole",
+                        "childCategories": []
+                    },
+                    {
+                        "id": 2381,
+                        "parentCategoryId": 7,
+                        "name": "Audio dla graczy",
+                        "childCategories": []
+                    },
+                    {
+                        "id": 3356,
+                        "parentCategoryId": 7,
+                        "name": "Karty pamięci do konsol",
+                        "childCategories": []
+                    },
+                    {
+                        "id": 2383,
+                        "parentCategoryId": 7,
+                        "name": "Tablety dla graczy",
+                        "childCategories": []
+                    },
+                    {
+                        "id": 3591,
+                        "parentCategoryId": 7,
+                        "name": "Symulatory jazdy",
+                        "childCategories": []
+                    },
+                    {
+                        "id": 2380,
+                        "parentCategoryId": 7,
+                        "name": "Myszki i klawiatury dla graczy",
+                        "childCategories": []
+                    },
+                    {
+                        "id": 1163,
+                        "parentCategoryId": 7,
+                        "name": "Gry",
+                        "childCategories": []
+                    },
+                    {
+                        "id": 2382,
+                        "parentCategoryId": 7,
+                        "name": "Laptopy do gier",
+                        "childCategories": []
+                    },
+                    {
+                        "id": 2652,
+                        "parentCategoryId": 7,
+                        "name": "VR (Virtual Reality)",
+                        "childCategories": []
+                    },
+                    {
+                        "id": 2385,
+                        "parentCategoryId": 7,
+                        "name": "Plecaki dla graczy",
+                        "childCategories": []
+                    },
+                    {
+                        "id": 2370,
+                        "parentCategoryId": 7,
+                        "name": "Komputery do gier",
+                        "childCategories": []
+                    },
+                    {
+                        "id": 3590,
+                        "parentCategoryId": 7,
+                        "name": "Symulatory lotów",
+                        "childCategories": []
+                    },
+                    {
+                        "id": 2934,
+                        "parentCategoryId": 7,
+                        "name": "Urządzenia do streamingu",
+                        "childCategories": []
+                    },
+                    {
+                        "id": 2518,
+                        "parentCategoryId": 7,
+                        "name": "Akcesoria do konsol",
+                        "childCategories": []
+                    },
+                    {
+                        "id": 3030,
+                        "parentCategoryId": 7,
+                        "name": "Gadżety dla graczy",
+                        "childCategories": []
+                    }
+                ]
+            },
+            {
+                "id": 1215,
+                "parentCategoryId": 8,
+                "name": "Słuchawki",
+                "childCategories": []
+            },
+            {
+                "id": 375,
+                "parentCategoryId": 8,
+                "name": "Projektory i ekrany",
+                "childCategories": []
+            },
+            {
+                "id": 1117,
+                "parentCategoryId": 8,
+                "name": "Telewizory",
+                "childCategories": []
+            },
+            {
+                "id": 2528,
+                "parentCategoryId": 8,
+                "name": "Akcesoria do telewizorów",
+                "childCategories": []
+            },
+            {
+                "id": 1877,
+                "parentCategoryId": 8,
+                "name": "Anteny DVB-T",
+                "childCategories": []
+            },
+            {
+                "id": 33,
+                "parentCategoryId": 8,
+                "name": "Głośniki",
+                "childCategories": []
+            },
+            {
+                "id": 1876,
+                "parentCategoryId": 8,
+                "name": "Tunery do TV",
+                "childCategories": []
+            },
+            {
+                "id": 2636,
+                "parentCategoryId": 8,
+                "name": "Hi-Fi audio",
+                "childCategories": []
+            },
+            {
+                "id": 3442,
+                "parentCategoryId": 8,
+                "name": "Soundbary",
+                "childCategories": []
+            },
+            {
+                "id": 1885,
+                "parentCategoryId": 8,
+                "name": "Przenośny sprzęt audio",
+                "childCategories": []
+            },
+            {
+                "id": 2642,
+                "parentCategoryId": 8,
+                "name": "Power Audio",
+                "childCategories": []
+            },
+            {
+                "id": 2671,
+                "parentCategoryId": 8,
+                "name": "Akcesoria do słuchawek",
+                "childCategories": []
+            },
+            {
+                "id": 3478,
+                "parentCategoryId": 8,
+                "name": "Sprzęt DJ",
+                "childCategories": []
+            }
+        ]
+    }
+]

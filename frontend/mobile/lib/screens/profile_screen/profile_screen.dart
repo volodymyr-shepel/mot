@@ -13,6 +13,12 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title : const Text(
+          "Profile",
+          style: TextStyle(fontSize: 20.0,color: Colors.white),
+        )
+      ),
       // TODO : remove app bar here since the nvigation will be done from init screen and only body of the screen will change 
       // so app bar and bottom menu will be from the init screen, that is why it is not needed here
       // but for now i will leave it here since there is no init screen still

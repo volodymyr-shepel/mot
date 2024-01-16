@@ -1,0 +1,81 @@
+[
+            {
+                "id": 2665,
+                "parentCategoryId": 5,
+                "name": "Karty przechwytujące wideo",
+                "childCategories": []
+            },
+            {
+                "id": 388,
+                "parentCategoryId": 5,
+                "name": "Obudowy komputerowe",
+                "childCategories": []
+            },
+            {
+                "id": 2887,
+                "parentCategoryId": 5,
+                "name": "Podzespoły serwerowe",
+                "childCategories": []
+            },
+            {
+                "id": 89,
+                "parentCategoryId": 5,
+                "name": "Dyski twarde HDD i SSD",
+                "childCategories": []
+            },
+            {
+                "id": 14,
+                "parentCategoryId": 5,
+                "name": "Płyty główne",
+                "childCategories": []
+            },
+            {
+                "id": 2493,
+                "parentCategoryId": 5,
+                "name": "Zasilacze komputerowe",
+                "childCategories": []
+            },
+            {
+                "id": 397,
+                "parentCategoryId": 5,
+                "name": "Modding PC",
+                "childCategories": []
+            },
+            {
+                "id": 455,
+                "parentCategoryId": 5,
+                "name": "Karty sieciowe",
+                "childCategories": []
+            },
+            {
+                "id": 345,
+                "parentCategoryId": 5,
+                "name": "Karty graficzne",
+                "childCategories": []
+            },
+            {
+                "id": 11,
+                "parentCategoryId": 5,
+                "name": "Procesory",
+                "childCategories": []
+            },
+            {
+                "id": 28,
+                "parentCategoryId": 5,
+                "name": "Pamięci RAM",
+                "childCategories": []
+            },
+            {
+                "id": 2599,
+                "parentCategoryId": 5,
+                "name": "Chłodzenia komputerowe",
+                "childCategories": []
+            },
+            {
+                "id": 1461,
+                "parentCategoryId": 5,
+                "name": "Napędy optyczne",
+                "childCategories": []
+            }
+        ]
+
