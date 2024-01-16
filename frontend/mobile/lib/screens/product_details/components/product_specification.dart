@@ -32,8 +32,8 @@ class ProductSpecification extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       child: DataTable(
         columns: const [
-          DataColumn(label: Text('Feature')),
-          DataColumn(label: Text('Detail')),
+          DataColumn(label: Text('')),
+          DataColumn(label: Text('')),
         ],
         rows: getSpecificationRows(),
       ),
