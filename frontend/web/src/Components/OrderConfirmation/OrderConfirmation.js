@@ -1,9 +1,26 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Box, Breadcrumbs, Button, Typography } from '@mui/material';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { clearOrderNumber } from './../../store/orderSlice';
 
 function OrderConfirmation() {
-	const { orderNumber } = useParams();
+	const dispatch = useDispatch();
+	const orderNumber = useSelector((state) => state.order?.orderNumber);
+	// Use useRef to store orderNumber inside the component
+  const orderNumberRef = useRef(orderNumber);
+
+	// Update orderNumberRef in useRef when orderNumber is changed from Redux
+  useEffect(() => {
+    orderNumberRef.current = orderNumber;
+  }, [orderNumber]);
+
+	useEffect(() => {
+		return () => {
+			// clear orderNumber after it was stored in useRef
+			dispatch(clearOrderNumber());
+		};
+	}, [dispatch]);
 
 	return (
 		<Box
@@ -22,19 +39,18 @@ function OrderConfirmation() {
 					<Typography color="text.primary">Order Confirmation</Typography>
 				</Breadcrumbs>
 				<Typography variant='h4' component="h1">Order Confirmation</Typography>
-				<Typography variant='p' component="p" my={2}>Your order number is <strong>{orderNumber}</strong>.</Typography>
+				<Typography variant='p' component="p" my={2}>Your order number is <strong>{orderNumberRef.current}</strong>.</Typography>
 				<Typography variant='p' component="p" my={2}>You will be notified about changing the order status by email.</Typography>
 				<Button
-							component={Link}
-							size="large"
-							variant="outlined"
-							color="primary"
-							to="/"
-							sx={{ mr: 1 }}
-						>
-							Return to Shopping
-						</Button>
-				
+					component={Link}
+					size="large"
+					variant="outlined"
+					color="primary"
+					to="/"
+					sx={{ mr: 1 }}
+				>
+					Return to Shopping
+				</Button>
 			</Box>
 		</Box>
 	);

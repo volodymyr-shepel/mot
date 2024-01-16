@@ -8,14 +8,12 @@ import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import FormControl from '@mui/material/FormControl';
-import InputLabel from '@mui/material/InputLabel';
-import Input from '@mui/material/Input';
-import Select from '@mui/material/Select';
 import TextField from '@mui/material/TextField';
 import Pagination from '@mui/material/Pagination';
-import MenuItem from '@mui/material/MenuItem';
 import { setSelectedCategory, setCategories } from './../../store/categorySlice';
-import { getCategoryData } from './../../store/categoryData';
+import { setCategoryProducts } from './../../store/categoryProductsSlice';
+import { getCategoriesList } from '../../store/categoriesList';
+import { getProductsList } from '../../store/categoryProducts';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { addToCart } from './../../store/cartSlice';
@@ -25,6 +23,7 @@ function Category() {
 	const navigate = useNavigate();
 	const { id } = useParams();
 	const selectedCategory = useSelector((state) => state.category.selectedCategory);
+	const products = useSelector((state) => state.categoryProducts.products);
 	const categories = useSelector((state) => state.category.categories);
 	const [productsPerPage, setProductsPerPage] = useState(3); // products quantity on a page
 	const [currentPage, setCurrentPage] = useState(1); // current page
@@ -51,33 +50,40 @@ function Category() {
 
 	const handleAddToCart = (product) => {
 		const cartItem = {
-			id: product.product_id,
+			id: product.id,
 			name: product.name,
 			price: product.price,
 			available: product.quantity,
-			imageUrl: product.image_url,
+			imageUrl: product.imageUrl,
 			quantityToOrder: 1, // Set quantity to 1
 		};
 		dispatch(addToCart(cartItem));
 	};
 
 	useEffect(() => {
-		const fetchData = () => {
+		const fetchData = async () => {
 			try {
-				const data = getCategoryData();
-				dispatch(setCategories(data.categories));
+				const data = await getCategoriesList();
+				dispatch(setCategories(data));
 				const categoryId = parseInt(id, 10);
 				if (
 					!/^\d+$/.test(id) //check if id doesn't contain digits only
-					|| !data.categories.some((category) => category.id === categoryId) //check if id don't match any existing id
+					|| !data.some((category) => category.id === categoryId) 
+					//check if id don't match any existing id
 					) {
 					navigate('/'); // Redirect to home page 
 					//TODO: add redirect to page 404
 					return;
 				}
-				const foundCategory = data.categories.find((category) => category.id === categoryId);
+				const foundCategory = data.find((category) => category.id === categoryId);
+				
 				if (foundCategory) {
+					const foundProducts = await getProductsList(foundCategory?.id)
+
+					dispatch(setCategoryProducts(foundProducts));
+
 					dispatch(setSelectedCategory(foundCategory));
+
 				} else {
 					navigate('/'); // Redirect to home page
 				}
@@ -93,7 +99,9 @@ function Category() {
 		resetAllFilters();
 	};
 
-	const products = selectedCategory?.products || []; //'|| []' is needed for page refresh or opening a page by direct link 
+	// const products = getProductsList(selectedCategory?.id) || []; 
+	//'|| []' is needed for page refresh or opening a page by direct link 
+	//TODO make direct request to back instead of selectedCategory?.products to get /api/product/products/v1/c/28 where 28 is selectedCategory id
 
 	const handleSortMethodChange = (event) => {
 		setSortMethod(event.target.value);
@@ -114,8 +122,9 @@ function Category() {
 			return 0;
 		}
 	};
-
+ 
 	const sortedProducts = [...products].sort(sortProducts);
+	
 
 	// Function to get filtered and sorted products on the current page
 	const getDisplayedProducts = () => {
@@ -172,11 +181,12 @@ function Category() {
 				}}
 			>
 				{categories.map((category) => (
-				(category.products) &&
+				// (category.products) && 
+				//TODO remove this check after update with fetching from back
 					<ListItem key={category.id}>
 						<Button component={Link} to={`/category/${category.id}`} onClick={() => handleCategoryClick(category)} style={{fontWeight: category.id === selectedCategory?.id ? 'bold' : 'normal',
 				}}>
-							{category.categoryName}
+							{category.name}
 						</Button>
 					</ListItem>
 				))}
@@ -186,10 +196,10 @@ function Category() {
 					<Link underline="hover" color="inherit" to="/">
 						Home
 					</Link>
-					<Typography color="text.primary">{selectedCategory?.categoryName}</Typography>
+					<Typography color="text.primary">{selectedCategory?.name}</Typography>
 				</Breadcrumbs>
 				<Typography variant='h4' component="h1">
-					{selectedCategory?.categoryName}
+					{selectedCategory?.name}
 				</Typography>
 				<Box mt={2} display="flex" flexWrap="wrap" justifyContent="space-between" gap={2} alignItems="center">
 					<FormControl sx={{minWidth: 150,}}>
@@ -229,7 +239,7 @@ function Category() {
 						<FormControl sx={{ minWidth: 150,}}>
 							<TextField
 								type="number"
-								label="Price from $"
+								label="Price from PLN"
 								id="price-filter-from"
 								variant="standard"
 								value={filterFrom}
@@ -239,7 +249,7 @@ function Category() {
 						<FormControl sx={{ minWidth: 150,}}>
 							<TextField
 								type="number"
-								label="Price to $"
+								label="Price to PLN"
 								id="price-filter-frtoom"
 								variant="standard"
 								value={filterTo}
@@ -266,20 +276,21 @@ function Category() {
 				</Box>
 				<Grid container spacing={4} mt={0}>
 					{displayedProducts.map((product) =>(
-					<Grid item xs={12} sm={6} md={4} key={product.product_id}>
+					<Grid item xs={12} sm={6} md={4} key={product.id}>
 						<Card variant="outlined" sx={{p: 2}}>
-							<Box
-								component="img"
-								sx={{
-									width: '100%',
-								}}
-								alt={product.name}
-								src={product.image_url}
-							/>
+							<Link onClick={() => handleProductClick(product.id)} to={`/product/${product.id}`}>
+								<Box component="img"
+									sx={{
+										width: '100%',
+									}}
+									alt={product.name}
+									src={product.imageUrl}
+								/>
+							</Link>
 							<Typography variant='h6' component="h2" ml={-1}>
-								<Button component={Link} onClick={() => handleProductClick(product.product_id)} to={`/product/${product.product_id}`}>{product.name}</Button>
+								<Button component={Link} onClick={() => handleProductClick(product.id)} to={`/product/${product.id}`}>{product.name}</Button>
 							</Typography>
-							<Typography variant='p' component="p" mb={1}>${formatPrice(product.price)}</Typography>
+							<Typography variant='p' component="p" mb={1}>{formatPrice(product.price)} PLN</Typography>
 							<Button
 								size="large"
 								edge="start"

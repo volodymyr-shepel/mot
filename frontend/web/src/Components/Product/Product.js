@@ -4,7 +4,7 @@ import { Box, Breadcrumbs, Button, Grid, FormControl, List, ListItem, Table, Tab
 import { Link, useParams } from 'react-router-dom';
 import { setSelectedCategory, setCategories } from './../../store/categorySlice';
 import { getProductDataById } from './../../store/productData';
-import { getCategoryData } from './../../store/categoryData';
+import { getCategoriesList } from '../../store/categoriesList';
 import { addToCart } from './../../store/cartSlice';
 
 function Product() {
@@ -26,11 +26,11 @@ function Product() {
 	const handleAddToCart = () => {
 		// Create an object with product info
 		const cartItem = {
-			id: productData.product_id,
+			id: productData.id,
 			name: productData.name,
 			price: productData.price,
 			available: productData.quantity,
-			imageUrl: productData.image_url,
+			imageUrl: productData.imageUrl,
 			quantityToOrder: parseInt(quantityToAdd, 10),
 		};
 		console.log(cartItem);
@@ -40,18 +40,18 @@ function Product() {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const data = getProductDataById(id);
+				const data = await getProductDataById(id);
 				setProductData(data);
 
 				// Begin: get categories list and selected category for case of page refresh or open direct link to product
-				const dataCategories = getCategoryData();
-				dispatch(setCategories(dataCategories.categories));
+				const dataCategories = await getCategoriesList();
+				dispatch(setCategories(dataCategories));
 
-				const parentCategoryId = data.categoryId;
+				const parentCategoryId = data.categoryId; //TODO: rename parentCategoryId to categoryId
 
-				const restoredSelectedCategory = dataCategories.categories.find(category => category.id === parentCategoryId);
+				const restoredSelectedCategory = dataCategories.find(category => category.id === parentCategoryId);
 		        dispatch(setSelectedCategory(restoredSelectedCategory));
-				// End: get categories list and selected category for case pf page refresh or open direct link to product
+				// End: get categories list and selected category for case of page refresh or open direct link to product
 			} catch (error) {
 				console.error('Error fetching product data:', error);
 				setError(error.message);
@@ -78,11 +78,11 @@ function Product() {
 				}}
 			>
 				{categories.map((category) => (
-				(category.products) &&
+				// (category.products) &&
 					<ListItem key={category.id}>
 						<Button component={Link} to={`/category/${category.id}`} onClick={() => handleCategoryClick(category)} style={{fontWeight: category.id === selectedCategory?.id ? 'bold' : 'normal',
 				}}>
-							{category.categoryName}
+							{category.name}
 						</Button>
 					</ListItem>
 				))}
@@ -95,8 +95,8 @@ function Product() {
 							<Link underline="hover" color="inherit" to="/">
 								Home
 							</Link>
-							<Link underline="hover" color="inherit" to={`/category/${selectedCategory.id}`}>
-								{selectedCategory?.categoryName}
+							<Link underline="hover" color="inherit" to={`/category/${selectedCategory?.id}`}>
+								{selectedCategory?.name}
 							</Link>
 							<Typography color="text.primary">{productData.name}</Typography>
 						</Breadcrumbs>
@@ -113,19 +113,19 @@ function Product() {
 											border: '1px solid rgba(0, 0, 0, 0.12)',
 										}}
 										alt={productData.name}
-										src={productData.image_url}
+										src={productData.imageUrl}
 									/>
 							</Grid>
 							<Grid item xs={12} sm={12} md={8}>
-								<Typography variant='h5' component="p" mb={1}>Price: ${formatPrice(productData.price)}</Typography>
+								<Typography variant='h5' component="p" mb={1}>Price: {formatPrice(productData.price)} PLN</Typography>
 								<Typography variant='p' component="p" mb={1}>SKU: {productData.sku}</Typography>
 								<Typography variant='h5' component="h6">Description</Typography>
 								<Typography variant='p' component="p" mb={1}>{productData.description}</Typography>
 								<Typography variant="h5" component="h6">Specification</Typography>
-								{productData.specification.map((spec, index) => (
-									<Table key={index} sx={{mb: 4}}>
+								{/* {productData.specification.map((spec, index) => ( */}
+									<Table sx={{mb: 4}}>
 										<TableBody>
-										{Object.entries(spec).map(([key, value]) => (
+										{Object.entries(productData.specification).map(([key, value]) => (
 											<TableRow key={key}>
 												<TableCell variant="th" component="th">{key}</TableCell>
 												<TableCell>{value}</TableCell>
@@ -133,7 +133,7 @@ function Product() {
 										))}
 										</TableBody>
 									</Table>
-								))}
+								{/* ))} */}
 								<Box display="flex" justifyContent="flex-end">
 									<Box display="flex" flexWrap="wrap" justifyContent="flex-start" alignItems="center" gap={2}>
 										<FormControl sx={{ width: 100,}}>

@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSelectedCategory, setCategories } from './../../store/categorySlice';
-import { getCategoryData } from './../../store/categoryData';
+import { getCategoriesList } from '../../store/categoriesList';
 
 function Categories() {
   const dispatch = useDispatch();
@@ -15,13 +15,13 @@ function Categories() {
   const selectedCategory = useSelector((state) => state.category.selectedCategory);
 
   useEffect(() => {
-    const fetchData = () => {
+    const fetchData = async () => {
       try {
-        const data = getCategoryData();
+        const data = await getCategoriesList();
 
-        dispatch(setCategories(data.categories));
+        dispatch(setCategories(data));
         if (!selectedCategory) {
-          dispatch(setSelectedCategory(data.categories[0]));
+          dispatch(setSelectedCategory(data[0]));
         }
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -47,7 +47,7 @@ function Categories() {
 		<Container sx={{ py: 8 }} maxWidth="xl">
 			<Grid container spacing={4}>
 				{categories.map((category) => (
-				(category.products) &&
+				// (category.products) &&
 					<Grid item key={category.id} xs={12} sm={6} md={4}>
 						<Card variant="outlined">
 							<Button component={Link} to={`/category/${category.id}`} onClick={() => handleCategoryClick(category)} variant="h5"
@@ -58,7 +58,7 @@ function Categories() {
 									height: '100%',
 								}}
 							>
-								{category.categoryName}
+								{category.name}
 							</Button>
 						</Card>
 					</Grid>

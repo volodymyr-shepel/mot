@@ -83,7 +83,7 @@ function Cart() {
 										</Box>
 									</Box>
 									<Box display="flex" flexWrap="wrap" justifyContent="flex-start" alignItems="center" gap={2}>
-										<Typography sx={{padding: 1}} variant="h5">${formatPrice(item.price)}</Typography>
+										<Typography sx={{padding: 1}} variant="h5">{formatPrice(item.price)} PLN</Typography>
 										<FormControl sx={{ width: 70,}}>
 											<TextField
 												type="number"
@@ -110,7 +110,7 @@ function Cart() {
 							))}
 						</List>
 						<Box sx={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 1 }}>
-							<Typography variant="h6" component="div">Total Sum: ${formatPrice(calculateTotalSum())}</Typography>
+							<Typography variant="h6" component="div">Total Sum: {formatPrice(calculateTotalSum())} PLN</Typography>
 						</Box>
 						<Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
 							<Button size="large" variant="outlined" color="primary" sx={{ mr: 1 }} onClick={handleClearCart}>Clear Cart</Button>

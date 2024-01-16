@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Box, Breadcrumbs, Button, Grid, FormControl, TextField, Typography } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
 import { clearCart } from './../../store/cartSlice';
+import { setOrderNumber } from './../../store/orderSlice';
 
 function Checkout() {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const cartItems = useSelector((state) => state.cart.items);
-
 	const totalQuantity = cartItems.reduce((total, item) => total + item.quantityToOrder, 0);
 
   const calculateTotalSum = () => {
@@ -45,16 +45,18 @@ function Checkout() {
 		}));
 	};
 
-	const orderNumber = 934657369; // mocked orderNumber, replace it with real from backend
-
+	
 	const handleConfirmOrder = () => {
 		// Handle the logic for confirming the order with shipmentInfo
 		console.log('Shipment Info:', shipmentInfo);
 		console.log('Cart Items:', itemsInfo);
 		// Submit the form, get order number from backend and navigate with it to OrderConfirmation page 
+		const mockOrderNumber = 934657369; // mocked orderNumber, replace it with real from backend
+		dispatch(setOrderNumber(mockOrderNumber));
+		// navigate(`/orderconfirmation/${mockOrderNumber}`);
+		navigate('/orderconfirmation');
 		// You can dispatch an action or perform further actions here
 		dispatch(clearCart());
-		navigate(`/orderconfirmation/${orderNumber}`);
 	};
 
 	return (
@@ -215,7 +217,7 @@ function Checkout() {
 							size="large"
 							variant="contained"
 							color="primary"
-							to={`/orderconfirmation/${orderNumber}`}
+							to={'/orderconfirmation'}
 							onClick={handleConfirmOrder}
 						>
 							Confirm Order
