@@ -18,10 +18,6 @@ class HomeHeader extends StatelessWidget {
         children: [
           SearchField(),
           IconButttonWithCounter(
-            svgSrc: "assets/icons/Cart Icon.svg",
-            press: () {},
-          ),
-          IconButttonWithCounter(
             svgSrc: "assets/icons/Bell.svg",
             numOfitem: 4,
             press: () {},

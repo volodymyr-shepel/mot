@@ -75,6 +75,8 @@ services:
     container_name: mot_nginx
     ports:
       - "80:80"
+    depends_on:
+      - consul
     networks:
       - mot
 
@@ -97,6 +99,8 @@ services:
       dockerfile: ./Docker/api-gw/Dockerfile
     ports:
       - "8083:8083"
+    depends_on:
+      - consul
     networks:
       - mot
 
@@ -109,6 +113,7 @@ services:
       - "8087:8087"
     depends_on:
       - postgres-identity
+      - consul
     networks:
       - mot
 
@@ -121,6 +126,7 @@ services:
       - "8088:8088"
     depends_on:
       - postgres-product
+      - consul
     networks:
       - mot
 
@@ -131,6 +137,7 @@ services:
       dockerfile: ./Docker/notification-service/Dockerfile
     depends_on:
       - postgres-notification
+      - consul
     ports:
       - "8082:8082"
     networks:

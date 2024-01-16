@@ -19,7 +19,7 @@ import java.util.Map;
 
 @Service
 
-public class EmailService {
+public class NotificationService {
     private final JavaMailSender javaMailSender;
 
     @Value("${app.email-from}")
@@ -31,7 +31,7 @@ public class EmailService {
     private final TemplateEngine templateEngine;
 
     @Autowired
-    public EmailService(JavaMailSender javaMailSender, TemplateEngine templateEngine) {
+    public NotificationService(JavaMailSender javaMailSender, TemplateEngine templateEngine) {
         this.javaMailSender = javaMailSender;
         this.templateEngine = templateEngine;
     }

@@ -2,24 +2,23 @@ package com.mot.controller;
 
 
 import com.mot.dtos.NotificationDTO;
-import com.mot.service.EmailService;
+import com.mot.service.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/email")
 public class EmailController {
 
-    private final EmailService emailService;
+    private final NotificationService notificationService;
 
     @Autowired
-    public EmailController(EmailService emailService) {
-        this.emailService = emailService;
+    public EmailController(NotificationService notificationService) {
+        this.notificationService = notificationService;
     }
 
     @PostMapping(path = "sendEmail")
     public void sendEmail(@RequestBody NotificationDTO emailRequest){
-        emailService.sendNotification(emailRequest);
+        notificationService.sendNotification(emailRequest);
     }
 }
