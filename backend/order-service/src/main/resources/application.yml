@@ -1,0 +1,35 @@
+server:
+  port: 8089
+
+spring:
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        register: true
+        prefer-ip-address: true
+        service-name: product-service
+        instance-id: ${spring.application.name}:${server.port}
+
+  application:
+    name: order-service
+  datasource:
+    username: admin
+    password: root
+    url: jdbc:postgresql://localhost:5443/order
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: true
+
+app:
+  security:
+    base-url : ${BASE_URL}
+    jwt:
+      issuer: ${ISSUER}
+      secret: ${JWT_SECRET}
