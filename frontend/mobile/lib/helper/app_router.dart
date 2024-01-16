@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:flutter/widgets.dart';
 import 'package:mot/models/user_data.dart';
 import 'package:mot/screens/cart_screen/cart_screen.dart';
+import 'package:mot/screens/cart_screen/order_success_screen.dart';
 import 'package:mot/screens/complete_profile/complete_profile_screen.dart';
 import 'package:mot/screens/favorite_screen/favorite_screen.dart';
 import 'package:mot/screens/forgot_password/forgot_password_screen.dart';
@@ -46,6 +47,9 @@ final GoRouter router = GoRouter(
       path: SignUpSuccessScreen.routeName,
       builder : (context, state) => const SignUpSuccessScreen()),
     
+    GoRoute(
+      path: OrderSuccessScreen.routeName,
+      builder : (context, state) => const OrderSuccessScreen()),
     GoRoute(
       path: SignUpScreen.routeName,
       builder : (context, state) => const SignUpScreen()),
