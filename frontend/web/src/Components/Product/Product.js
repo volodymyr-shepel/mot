@@ -49,7 +49,9 @@ function Product() {
 
 				const parentCategoryId = data.categoryId; //TODO: rename parentCategoryId to categoryId
 
-				const restoredSelectedCategory = dataCategories.find(category => category.id === parentCategoryId);
+				const restoredSelectedCategory = dataCategories.find(category => 
+					category.childCategories.find(childCategory => childCategory.id === parentCategoryId)
+				);
 		        dispatch(setSelectedCategory(restoredSelectedCategory));
 				// End: get categories list and selected category for case of page refresh or open direct link to product
 			} catch (error) {

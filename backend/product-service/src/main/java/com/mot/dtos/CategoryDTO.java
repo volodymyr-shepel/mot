@@ -51,4 +51,6 @@ public class CategoryDTO {
     public void setChildCategories(List<CategoryDTO> childCategories) {
         this.childCategories = childCategories;
     }
+
+
 }
