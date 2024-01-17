@@ -45,7 +45,7 @@ class _ProductDescriptionState extends State<ProductDescription> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                     child: Text(
-                      '\$${widget.product.price}', // Display the price of the product
+                      "${widget.product.price.toStringAsFixed(2)} zł.", // Display the price of the product
                       style: const TextStyle(
                           fontSize: 18, fontWeight: FontWeight.bold, color: kPrimaryColor),
                     ),

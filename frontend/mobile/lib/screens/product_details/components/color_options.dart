@@ -2,6 +2,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mot/constants.dart';
 
 class ColorOptionsSection extends StatefulWidget {
   @override
@@ -44,6 +45,11 @@ class _ColorOptionsSectionState extends State<ColorOptionsSection> {
             color: Color(0xff000000),
             isSelected: selectedColor == Color(0xff000000),
             onSelect: () => selectColor(Color(0xff000000)),
+          ),
+          ColorOptionWidget(
+            color: kPrimaryColor,
+            isSelected: selectedColor == kPrimaryColor,
+            onSelect: () => selectColor(kPrimaryColor),
           ),
           // Add more ColorOptionWidgets here
         ],

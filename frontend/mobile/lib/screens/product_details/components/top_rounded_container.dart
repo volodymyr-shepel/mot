@@ -20,10 +20,10 @@ class TopRoundedContainer extends StatelessWidget {
       width: double.infinity,
       decoration: const BoxDecoration(
         color: kPrimaryDarkColor,
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(40),
-          topRight: Radius.circular(40),
-        ),
+        // borderRadius: BorderRadius.only(
+        //   topLeft: Radius.circular(40),
+        //   topRight: Radius.circular(40),
+        // ),
       ),
       child: child,
     );

@@ -15,7 +15,7 @@ import 'components/product_description.dart';
 import 'components/product_images.dart';
 import 'components/top_rounded_container.dart';
 import 'package:http/http.dart' as http;
-
+import '../../../helper/keyboard.dart';
 class DetailsScreen extends StatefulWidget {
   static String routeName = "/details";
   final Product productPreview;
@@ -64,26 +64,14 @@ class _DetailsScreenState extends State<DetailsScreen> {
       extendBodyBehindAppBar: true,
       backgroundColor: kPrimaryDarkColor,
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        //backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: ElevatedButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            style: ElevatedButton.styleFrom(
-              shape: const CircleBorder(),
-              padding: EdgeInsets.zero,
-              elevation: 0,
-              backgroundColor: Colors.white,
-            ),
-            child: const Icon(
-              Icons.arrow_back_ios_new,
-              color: Colors.black,
-              size: 20,
-            ),
-          ),
+        leading: IconButton(
+          onPressed: () {
+            KeyboardUtil.hideKeyboard(context);
+            Navigator.pop(context);
+          },
+          icon: const Icon(Icons.arrow_back_ios),
         ),
         actions: [
           Row(
@@ -134,9 +122,11 @@ class _DetailsScreenState extends State<DetailsScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Expanded(
-                            child: ColorOptionsSection(), // Wrap ColorOptionsSection with Expanded
+                          Container(
+                            width: 200, // Set your desired width here
+                            child: ColorOptionsSection(),
                           ),
+                          SizedBox(width: 15),
                           QuantitySelector(value: quantity, onIncrement: () {
                             setState(() {
                               quantity++;
@@ -155,6 +145,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
                     ],
                   ),
                 ),
+                const SizedBox(height: 30),
+
                 product != null ? ProductSpecification(
                   specifications: product!.specification,
                 ) : CircularProgressIndicator(),
