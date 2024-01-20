@@ -21,7 +21,7 @@ import java.util.stream.Stream;
 @Service
 public class ProductServiceImpl implements ProductService {
     // fixed page size for now, change if needed
-    private final Integer PAGE_SIZE = 5;
+    private final Integer PAGE_SIZE = 12;
 
     private final ProductRepository productRepository;
 
