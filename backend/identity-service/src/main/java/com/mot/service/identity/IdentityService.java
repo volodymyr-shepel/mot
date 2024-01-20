@@ -6,7 +6,7 @@ import java.util.UUID;
 
 @Service
 public interface IdentityService {
-    public boolean isUserByIdIsValid(UUID uuid);
+    boolean isUserByIdIsValid(UUID uuid);
 
     boolean isUserByEmailIsValid(String email);
 }

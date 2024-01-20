@@ -8,15 +8,15 @@ import java.util.Map;
 import java.util.Optional;
 
 public class AddressCheck extends ChainLink {
-    private final Optional<AddressDTO> address;
+    private final Optional<AddressDTO> optionalAddress;
 
-    public AddressCheck(Optional<AddressDTO> address, Map<String, String> errors) {
-        this.address = address;
+    public AddressCheck(Optional<AddressDTO> optionalAddress, Map<String, String> errors) {
+        this.optionalAddress = optionalAddress;
         this.errors = errors;
         this.request = new Handle() {
             @Override
             public boolean isInvalid() {
-                return address.isEmpty();
+                return optionalAddress.isEmpty();
             }
 
             @Override

@@ -1,6 +1,5 @@
 package com.mot.response;
 
-import com.mot.dtos.LimitedOrderItemDTO;
 import com.mot.dtos.ProductDTO;
 import com.mot.dtos.UpdateProductDTO;
 import org.slf4j.Logger;

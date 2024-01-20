@@ -2,13 +2,14 @@ package com.mot.dtos;
 
 import com.mot.model.Address;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class AddressDTO {
 
     private String addressLine1;
@@ -22,7 +23,6 @@ public class AddressDTO {
     private String postalCode;
 
     private LocalDateTime createdOn;
-    public AddressDTO() {}
 
     public AddressDTO(Address address) {
         this.addressLine1 = address.getAddressLine1();

@@ -11,13 +11,13 @@ spring:
         prefer-ip-address: true
         service-name: order-service
         instance-id: ${spring.application.name}:${server.port}
-    openfeign:
-      client:
-        config:
-          default:
-            connectTimeout: 5000
-            readTimeout: 5000
-            loggerLevel: basic
+#    openfeign:
+#      client:
+#        config:
+#          default:
+#            connectTimeout: 5000
+#            readTimeout: 5000
+#            loggerLevel: basic
 
   application:
     name: order-service
