@@ -15,23 +15,23 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfiguration {
+public class SecurityConfigurationProductService {
 
 
 
-    private final JwtTokenFilter jwtTokenFilter;
+    private final JwtTokenFilterProductService jwtTokenFilterProductService;
 
-    private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
+    private final JwtAuthenticationEntryPointProductService jwtAuthenticationEntryPointProductService;
 
     @Autowired
-    public SecurityConfiguration(JwtTokenFilter jwtTokenFilter,
-                                 JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint) {
-        this.jwtTokenFilter = jwtTokenFilter;
-        this.jwtAuthenticationEntryPoint = jwtAuthenticationEntryPoint;
+    public SecurityConfigurationProductService(JwtTokenFilterProductService jwtTokenFilterProductService,
+                                               JwtAuthenticationEntryPointProductService jwtAuthenticationEntryPointProductService) {
+        this.jwtTokenFilterProductService = jwtTokenFilterProductService;
+        this.jwtAuthenticationEntryPointProductService = jwtAuthenticationEntryPointProductService;
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
+    public SecurityFilterChain securityFilterChainProductService(HttpSecurity http) throws Exception{
         http.csrf(AbstractHttpConfigurer::disable);
         http
                 .authorizeHttpRequests((auth) -> auth
@@ -43,9 +43,9 @@ public class SecurityConfiguration {
                         .anyRequest().authenticated()
                 )
                 .formLogin(AbstractAuthenticationFilterConfigurer::permitAll);
-        http.exceptionHandling(e -> e.authenticationEntryPoint(jwtAuthenticationEntryPoint));
+        http.exceptionHandling(e -> e.authenticationEntryPoint(jwtAuthenticationEntryPointProductService));
         http.sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
-        http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(jwtTokenFilterProductService, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 

@@ -1,6 +1,6 @@
 package com.mot.security;
 
-import com.mot.util.JwtUtil;
+import com.mot.util.JwtUtilOrder;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -15,13 +15,14 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 
 @Component
-public class JwtTokenFilter extends OncePerRequestFilter {
+public class JwtTokenFilterOrderService extends OncePerRequestFilter {
 
-    private final JwtUtil jwtUtil;
+    private final JwtUtilOrder jwtUtilOrder;
+
 
     @Autowired
-    public JwtTokenFilter(JwtUtil jwtUtil) {
-        this.jwtUtil = jwtUtil;
+    public JwtTokenFilterOrderService(JwtUtilOrder jwtUtilOrder) {
+        this.jwtUtilOrder = jwtUtilOrder;
     }
 
     @Override
@@ -36,7 +37,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
             return;
         }
-        String accessToken = JwtUtil.extractAuthToken(authHeader);
+        String accessToken = JwtUtilOrder.extractAuthToken(authHeader);
 
         // if there is no token proceed to the next filter and do not set SecurityContextHolder in this filter
         if(accessToken == null || accessToken.isEmpty()){
@@ -45,7 +46,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
         }
 
         // if the token validation fails go to the next filter and do not set SecurityContextHolder in this filter
-        if(!jwtUtil.validateToken(accessToken)){
+        if(!jwtUtilOrder.validateToken(accessToken)){
             filterChain.doFilter(request,response);
             return;
         }
@@ -58,10 +59,10 @@ public class JwtTokenFilter extends OncePerRequestFilter {
     }
 
     private void setAuthenticationContext(String token, HttpServletRequest request) {
-        final String userEmail = jwtUtil.extractUsername(token);
+        final String userEmail = jwtUtilOrder.extractUsername(token);
 
         UsernamePasswordAuthenticationToken
-                authentication = new UsernamePasswordAuthenticationToken(userEmail, null, jwtUtil.extractAuthoritiesFromToken(token));
+                authentication = new UsernamePasswordAuthenticationToken(userEmail, null, jwtUtilOrder.extractAuthoritiesFromToken(token));
 
         authentication.setDetails(
                 new WebAuthenticationDetailsSource().buildDetails(request));

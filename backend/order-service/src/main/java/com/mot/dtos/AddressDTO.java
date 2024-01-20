@@ -10,7 +10,6 @@ import java.util.UUID;
 @Getter
 @Setter
 public class AddressDTO {
-    private UUID id;
 
     private String addressLine1;
 
@@ -26,7 +25,6 @@ public class AddressDTO {
     public AddressDTO() {}
 
     public AddressDTO(Address address) {
-        this.id = address.getId();
         this.addressLine1 = address.getAddressLine1();
         this.addressLine2 = address.getAddressLine2();
         this.city = address.getCity();
@@ -37,5 +35,16 @@ public class AddressDTO {
 
     public static AddressDTO getAddressDTO(Address address) {
         return new AddressDTO(address);
+    }
+
+    public static Address getAddress(AddressDTO address) {
+        return new Address(
+                address.addressLine1,
+                address.addressLine2,
+                address.city,
+                address.country,
+                address.postalCode,
+                address.createdOn
+        );
     }
 }

@@ -4,20 +4,27 @@ server:
 spring:
   cloud:
     consul:
-      host: localhost
+      host: consul
       port: 8500
       discovery:
         register: true
         prefer-ip-address: true
-        service-name: product-service
+        service-name: order-service
         instance-id: ${spring.application.name}:${server.port}
+    openfeign:
+      client:
+        config:
+          default:
+            connectTimeout: 5000
+            readTimeout: 5000
+            loggerLevel: basic
 
   application:
     name: order-service
   datasource:
-    username: admin
-    password: root
-    url: jdbc:postgresql://localhost:5443/order
+    username: ${DATASOURCE_USERNAME}
+    password: ${DATASOURCE_PASSWORD}
+    url: ${DATASOURCE_URL}
   jpa:
     hibernate:
       ddl-auto: update
@@ -29,7 +36,16 @@ spring:
 
 app:
   security:
-    base-url : ${BASE_URL}
+    base-url: ${BASE_URL}
+    nginx-url: ${NGINX_URL}
     jwt:
       issuer: ${ISSUER}
       secret: ${JWT_SECRET}
+
+#feign:
+#  client:
+#    config:
+#      default:
+#        connectTimeout: 5000
+#        readTimeout: 5000
+#        loggerLevel: basic

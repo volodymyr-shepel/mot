@@ -86,6 +86,7 @@ public class Product {
                 this.getId(),
                 this.getName(),
                 this.getPrice(),
+                this.getQuantity(),
                 this.getImageUrl()
         );
     }

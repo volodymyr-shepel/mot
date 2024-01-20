@@ -23,6 +23,10 @@ spring:
           uri: lb://product-service 
           predicates:
             - Path=/api/product/**
+        - id: order-service-route
+          uri: lb://order-service
+          predicates:
+            - Path=/api/order/**
 #        Here add the routes which will be accessible from api gateway
 
 management:

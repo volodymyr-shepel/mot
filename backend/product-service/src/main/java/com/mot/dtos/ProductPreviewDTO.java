@@ -6,6 +6,7 @@ public record ProductPreviewDTO(
         UUID id,
         String name,
         Double price,
+        Integer quantity,
         String imageUrl
 
 ) {

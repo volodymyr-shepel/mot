@@ -1,10 +1,7 @@
 package com.mot.controller.identity;
 
 import com.mot.service.identity.IdentityService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
@@ -12,14 +9,19 @@ import java.util.UUID;
 @RequestMapping(path = "/api/identity/v1")
 public class IdentityController {
 
-    private IdentityService identityService;
+    private final IdentityService identityService;
 
     IdentityController(IdentityService identityService) {
         this.identityService = identityService;
     }
 
-    @GetMapping(path = "/check-user")
-    public boolean isUserExist(@RequestParam("id") String uuid) {
-        return identityService.isUserByIdIsValid(UUID.fromString(uuid));
+    @GetMapping(path = "/check-user/{id}")
+    public boolean isUserExist(@PathVariable("id") UUID uuid) {
+        return identityService.isUserByIdIsValid(uuid);
+    }
+
+    @GetMapping(path = "/check-user/by-email/{email}")
+    public boolean isUserExistByEmail(@PathVariable("email") String email) {
+        return identityService.isUserByEmailIsValid(email);
     }
 }

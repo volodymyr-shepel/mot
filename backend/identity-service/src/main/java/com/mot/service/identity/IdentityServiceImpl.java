@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.UUID;
 
 @Service
-public class IdentityServiceImpl implements IdentityService{
+public class IdentityServiceImpl implements IdentityService {
 
     private final AppUserRepository appUserRepository;
 
@@ -19,5 +19,9 @@ public class IdentityServiceImpl implements IdentityService{
 
     public boolean isUserByIdIsValid(UUID uuid) {
         return appUserRepository.isAppUserByIdExists(uuid);
+    }
+
+    public boolean isUserByEmailIsValid(String email) {
+        return appUserRepository.existsByEmail(email);
     }
 }

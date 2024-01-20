@@ -2,8 +2,8 @@ package com.mot.controller.product;
 
 import com.mot.dtos.ProductDTO;
 import com.mot.dtos.ProductPreviewDTO;
+import com.mot.dtos.ProductQuantityDTO;
 import com.mot.service.product.ProductServiceImpl;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,6 +19,11 @@ public class ProductControllerImpl implements ProductController {
 
     public ProductControllerImpl(ProductServiceImpl productServiceImpl) {
         this.productServiceImpl = productServiceImpl;
+    }
+
+    @Override
+    public boolean updateProductQuantity(List<ProductQuantityDTO> products) {
+        return productServiceImpl.updateProductsByQuantity(products);
     }
 
     @Override

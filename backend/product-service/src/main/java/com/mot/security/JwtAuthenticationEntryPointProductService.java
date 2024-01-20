@@ -16,7 +16,7 @@ import java.io.IOException;
 //        a secured resource.
 
 @Component
-public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
+public class JwtAuthenticationEntryPointProductService implements AuthenticationEntryPoint {
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
         String errorMessage = "You do not have the required permissions to access this resource.";

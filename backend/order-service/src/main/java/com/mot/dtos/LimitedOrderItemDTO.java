@@ -9,7 +9,7 @@ import java.util.UUID;
 @Setter
 public class LimitedOrderItemDTO {
     private UUID productId;
-    private Long quantity;
+    private Integer quantity;
 
     public LimitedOrderItemDTO() {}
 }
