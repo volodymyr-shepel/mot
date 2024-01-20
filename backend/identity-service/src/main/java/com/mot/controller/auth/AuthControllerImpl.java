@@ -1,6 +1,5 @@
 package com.mot.controller.auth;
 
-import com.mot.controller.auth.AuthController;
 import com.mot.dtos.AppUserDTO;
 import com.mot.dtos.CredentialsDTO;
 import com.mot.dtos.UserAuthenticationRequest;

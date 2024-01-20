@@ -7,6 +7,7 @@ import 'package:mot/constants.dart';
 import 'package:mot/models/cart.dart';
 import 'package:mot/models/category.dart';
 import 'package:mot/models/product.dart';
+import 'package:mot/models/category.dart';
 import 'package:mot/screens/home/home_screen.dart';
 import 'package:mot/screens/home/product_list_screen.dart';
 import 'package:mot/screens/product_details/details_screen.dart';

@@ -30,7 +30,7 @@ Session = sessionmaker(bind=engine)
 session = Session()
 
 # Read JSON file and insert data into the database
-json_file_path = "./data/output.json"
+json_file_path = "../data/output.json"
 
 print("START")
 with open(json_file_path, 'r') as file:
