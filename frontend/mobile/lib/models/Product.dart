@@ -7,7 +7,6 @@ class Product {
   String name;
   double price;
   String imageUrl;
-  
 
   String? sku;
   String? description;
@@ -17,6 +16,7 @@ class Product {
   DateTime? updatedOn;
   Map<String, dynamic>? specification;
   bool isFavourite = false;
+
   Product({
     required this.id,
     required this.name,
@@ -33,18 +33,27 @@ class Product {
 
   factory Product.fromJson(Map<String, dynamic> json) {
     return Product(
-      id: json['id'] ?? '',
-      name: json['name'] ?? '',
-      price: (json['price'] ?? 0.0).toDouble(),
-      imageUrl: json['imageUrl'] ?? '',
-      sku: json['sku'] ?? '',
-      description: json['description'] ?? '',
-      categoryId: json['categoryId'] != null ? int.parse(json['categoryId']) : 0,
-      quantity: json['quantity'] != null ? int.parse(json['quantity']) : 0,
-      createdOn: json['createdOn'],
-      updatedOn: json['updatedOn'],
-      specification: json['specificaction']
-    );
+        id: json['id'] ?? '',
+        name: json['name'] ?? '',
+        price: json['price'] is double
+            ? json['price']
+            : double.tryParse(json['price'].toString()) ?? 0.0,
+        imageUrl: json['imageUrl'] ?? '',
+        sku: json['sku'] ?? '',
+        description: json['description'] ?? '',
+        categoryId: json['categoryId'] is int
+            ? json['categoryId']
+            : int.tryParse(json['categoryId']?.toString() ?? '0') ?? 0,
+        quantity: json['quantity'] is int
+            ? json['quantity']
+            : int.tryParse(json['quantity']?.toString() ?? '0') ?? 0,
+        createdOn: json['createdOn'] != null
+            ? DateTime.parse(json['createdOn'])
+            : null,
+        updatedOn: json['updatedOn'] != null
+            ? DateTime.parse(json['updatedOn'])
+            : null,
+        specification: json['specification']);
   }
 }
 

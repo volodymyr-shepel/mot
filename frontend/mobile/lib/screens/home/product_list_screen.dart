@@ -8,6 +8,7 @@ import 'dart:convert';
 
 import 'package:mot/models/product.dart';
 import 'package:mot/models/category.dart';
+import 'package:mot/screens/product_details/details_screen.dart';
 import 'package:mot/size_config.dart';
 import 'package:provider/provider.dart';
 
@@ -110,8 +111,13 @@ class _ProductListScreenState extends State<ProductListScreen> {
                     child: ProductCard(
                       product: products[firstProductIndex],
                       press: () {
-                        CartProvider cartProvider = Provider.of<CartProvider>(context, listen: false);
-                        cartProvider.addToCart(Cart(product: products[firstProductIndex], numOfItem: 1));
+                        Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => DetailsScreen(productPreview: products[firstProductIndex]),
+                              ),
+                            );
+                        // CartProvider cartProvider = Provider.of<CartProvider>(context, listen: false);
+                        // cartProvider.addToCart(Cart(product: products[firstProductIndex], numOfItem: 1));
                       },
                     ),
                   ),
@@ -121,9 +127,14 @@ class _ProductListScreenState extends State<ProductListScreen> {
                         ? ProductCard(
                             product: products[secondProductIndex],
                             press: () {
-                              CartProvider cartProvider = Provider.of<CartProvider>(context, listen: false);
-                              cartProvider.addToCart(Cart(product: products[secondProductIndex], numOfItem: 1));
-                              // TODO: Handle product card tap for the second product
+                              Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => DetailsScreen(productPreview: products[secondProductIndex]),
+                              ),
+                            );
+                              // CartProvider cartProvider = Provider.of<CartProvider>(context, listen: false);
+                              // cartProvider.addToCart(Cart(product: products[secondProductIndex], numOfItem: 1));
+                              // // TODO: Handle product card tap for the second product
                             },
                           )
                         : Container(),

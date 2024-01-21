@@ -5,5 +5,10 @@ export const getProductDataById = async (productId) => {
 			throw new Error(`Product with id ${productId} not found`);
 	}
 
-	return await response.json();
+	const json = await response.json();
+	console.log(json);
+	// if (json.length !== 0) { 
+	// 	json.sort((a, b) => a["id"] - b["id"]);
+	// }
+	return json;
 };

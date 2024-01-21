@@ -55,6 +55,7 @@ public class SecurityConfiguration {
 
                         .requestMatchers("/api/auth/admin/**").hasAuthority(UserRole.ADMIN.name())
                         .requestMatchers("/api/auth/customer/**").hasAuthority(UserRole.CUSTOMER.name())
+                        .requestMatchers("/api/identity/**").permitAll()
                         .requestMatchers("/api/auth/email/**").permitAll()
                         .requestMatchers("/api/auth/token/**").permitAll()
                         .requestMatchers("/api/auth/user/**").permitAll()
