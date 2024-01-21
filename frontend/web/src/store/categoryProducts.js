@@ -11,6 +11,13 @@ export const getProductsList = async (categoryId) => {//TODO: fetch from backend
 		console.log(json);
 
 		json.sort((a, b) => a["id"] - b["id"]);
+		// json.forEach(async (element) => {
+		// 	const image = await fetch(element.imageUrl+"?dummy");
+		// 	if (!image.ok) {
+		// 	console.log('null');
+		// 		element.imageUrl = null;
+		// 	}
+		// });
 	}
 	return json;
 };
