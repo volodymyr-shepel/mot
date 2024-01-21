@@ -1,22 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import { List, ListItem } from '@mui/material';
-import Grid from '@mui/material/Grid';
-import Card from '@mui/material/Card';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
+import Button from '@mui/material/Button';
+import Card from '@mui/material/Card';
 import FormControl from '@mui/material/FormControl';
-import TextField from '@mui/material/TextField';
+import Grid from '@mui/material/Grid';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
 import Pagination from '@mui/material/Pagination';
+import Typography from '@mui/material/Typography';
+import TextField from '@mui/material/TextField';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { setSelectedCategory, setCategories } from './../../store/categorySlice';
 import { setCategoryProducts } from './../../store/categoryProductsSlice';
 import { getCategoriesList } from '../../store/categoriesList';
 import { getProductsList } from '../../store/categoryProducts';
-import { Link, useParams, useNavigate } from 'react-router-dom';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { addToCart } from './../../store/cartSlice';
+import notfound from '../../static/images/404-image.png';
 
 function Category() {
 	const dispatch = useDispatch();
@@ -164,6 +166,10 @@ function Category() {
 		return price.toFixed(2);
 	};
 
+	const addDefaultSrc = (event) => {
+		event.target.src = notfound;
+	}
+
 	return (
 		<Box
 			sx={{
@@ -285,6 +291,7 @@ function Category() {
 									}}
 									alt={product.name}
 									src={product.imageUrl}
+									onError={addDefaultSrc}
 								/>
 							</Link>
 							<Typography variant='h6' component="h2" ml={-1}>

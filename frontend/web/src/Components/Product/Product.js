@@ -1,11 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Box, Breadcrumbs, Button, Grid, FormControl, List, ListItem, Table, TableBody, TableRow, TableCell, TextField, Typography } from '@mui/material';
 import { Link, useParams } from 'react-router-dom';
+import Box from '@mui/material/Box';
+import Breadcrumbs from '@mui/material/Breadcrumbs';
+import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
+import FormControl from '@mui/material/FormControl';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableRow from '@mui/material/TableRow';
+import TableCell from '@mui/material/TableCell';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
 import { setSelectedCategory, setCategories } from './../../store/categorySlice';
 import { getProductDataById } from './../../store/productData';
 import { getCategoriesList } from '../../store/categoriesList';
 import { addToCart } from './../../store/cartSlice';
+import notfound from '../../static/images/404-image.png';
 
 function Product() {
 	const dispatch = useDispatch();
@@ -63,7 +76,11 @@ function Product() {
 
 		fetchData();
 	}, [dispatch, id]);
-
+	
+	const addDefaultSrc = (event) => {
+		event.target.src = notfound;
+	}
+	
 	return (
 		<Box
 			sx={{
@@ -117,6 +134,7 @@ function Product() {
 										}}
 										alt={productData.name}
 										src={productData.imageUrl}
+										onError={addDefaultSrc}
 									/>
 							</Grid>
 							<Grid item xs={12} sm={12} md={8}>
@@ -125,18 +143,16 @@ function Product() {
 								<Typography variant='h5' component="h6">Description</Typography>
 								<Typography variant='p' component="p" mb={1}>{productData.description}</Typography>
 								<Typography variant="h5" component="h6">Specification</Typography>
-								{/* {productData.specification.map((spec, index) => ( */}
-									<Table sx={{mb: 4}}>
-										<TableBody>
-										{Object.entries(productData.specification).map(([key, value]) => (
-											<TableRow key={key}>
-												<TableCell variant="th" component="th">{key}</TableCell>
-												<TableCell>{value}</TableCell>
-											</TableRow>
-										))}
-										</TableBody>
-									</Table>
-								{/* ))} */}
+								<Table sx={{mb: 4}}>
+									<TableBody>
+									{Object.entries(productData.specification).map(([key, value]) => (
+										<TableRow key={key}>
+											<TableCell variant="th" component="th">{key}</TableCell>
+											<TableCell>{value}</TableCell>
+										</TableRow>
+									))}
+									</TableBody>
+								</Table>
 								<Box display="flex" justifyContent="flex-end">
 									<Box display="flex" flexWrap="wrap" justifyContent="flex-start" alignItems="center" gap={2}>
 										<FormControl sx={{ width: 100,}}>

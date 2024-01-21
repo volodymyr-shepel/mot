@@ -1,9 +1,17 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Box, Breadcrumbs, Button, FormControl, List, ListItem, TextField, Typography } from '@mui/material';
-import { clearCart, updateCartItemQuantity, removeCartItem } from './../../store/cartSlice';
 import { Link, useNavigate } from 'react-router-dom';
+import Box from '@mui/material/Box';
+import Breadcrumbs from '@mui/material/Breadcrumbs';
+import Button from '@mui/material/Button';
+import FormControl from '@mui/material/FormControl';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { clearCart, updateCartItemQuantity, removeCartItem } from './../../store/cartSlice';
+import notfound from '../../static/images/404-image.png';
 
 
 function Cart() {
@@ -33,6 +41,10 @@ function Cart() {
 	const formatPrice = (price) => {
 		return price.toFixed(2);
 	};
+
+	const addDefaultSrc = (event) => {
+		event.target.src = notfound;
+	}
 
 	return (
 		<Box
@@ -77,6 +89,7 @@ function Cart() {
 											}}
 											alt={item.name}
 											src={item.imageUrl}
+											onError={addDefaultSrc}
 										/>
 										<Box component="h2" sx={{padding: 1}}>
 											<Button component={Link} onClick={() => handleProductClick(item.id)} to={`/product/${item.id}`}>{item.name}</Button>

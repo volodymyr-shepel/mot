@@ -1,9 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Box, Breadcrumbs, Button, Grid, FormControl, TextField, Typography } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
+import Box from '@mui/material/Box';
+import Breadcrumbs from '@mui/material/Breadcrumbs';
+import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
+import FormControl from '@mui/material/FormControl';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
 import { clearCart } from './../../store/cartSlice';
-import { setOrderNumber } from './../../store/orderSlice';
+import { postOrder, setOrderNumber } from './../../store/orderSlice';
+
 
 function Checkout() {
 	const dispatch = useDispatch();
@@ -21,9 +28,9 @@ function Checkout() {
 
 	// State for Shipment Info form
 	const [shipmentInfo, setShipmentInfo] = useState({
+		userEmail: '',
 		firstName: '',
 		lastName: '',
-		email: '',
 		address: '',
 		address2: '',
 		city: '',
@@ -33,8 +40,8 @@ function Checkout() {
 
 	// Extracting id and quantityToOrder for each cartItem
 	const itemsInfo = cartItems.map((item) => ({
-		id: item.id,
-		quantityToOrder: item.quantityToOrder,
+		productId: item.id,
+		quantity: item.quantityToOrder,
 	}));
 
 	const handleInputChange = (e) => {
@@ -47,16 +54,52 @@ function Checkout() {
 
 	
 	const handleConfirmOrder = () => {
+		const placeOrder = { 
+			"userEmail": shipmentInfo.userEmail, 
+			"firstName": shipmentInfo.firstName,
+			"lastName": shipmentInfo.lastName,
+			"address": { 
+				"addressLine1": shipmentInfo.address, 
+				"addressLine2": shipmentInfo.address2, 
+				"city": shipmentInfo.city, 
+				"country": shipmentInfo.country, 
+				"postalCode": shipmentInfo.postalCode,
+				"createdOn": "2024-01-17T12:34:56"
+			}, 
+			"items": itemsInfo 
+		}
+		console.log(placeOrder);
 		// Handle the logic for confirming the order with shipmentInfo
 		console.log('Shipment Info:', shipmentInfo);
 		console.log('Cart Items:', itemsInfo);
-		// Submit the form, get order number from backend and navigate with it to OrderConfirmation page 
-		const mockOrderNumber = 934657369; // mocked orderNumber, replace it with real from backend
-		dispatch(setOrderNumber(mockOrderNumber));
-		// navigate(`/orderconfirmation/${mockOrderNumber}`);
-		navigate('/orderconfirmation');
-		// You can dispatch an action or perform further actions here
-		dispatch(clearCart());
+		// sendOrder()
+		dispatch(postOrder(placeOrder)).then((data) => {
+			console.log(data);
+			dispatch(setOrderNumber(data));
+			navigate('/orderconfirmation');
+				// You can dispatch an action or perform further actions here
+			dispatch(clearCart());
+			
+		});
+			// navigate(`/orderconfirmation/${mockOrderNumber}`);
+		// navigate('/orderconfirmation');
+		// 	// You can dispatch an action or perform further actions here
+		// dispatch(clearCart());
+		
+		// .then(uuid => {
+		// 	console.log(uuid);
+		// 	// Submit the form, get order number from backend and navigate with it to OrderConfirmation page 
+		// 	// const mockOrderNumber = 934657369; // mocked orderNumber, replace it with real from backend
+			
+		// })
+		// // console.log(uuid);
+		// // Submit the form, get order number from backend and navigate with it to OrderConfirmation page 
+		// // const mockOrderNumber = 934657369; // mocked orderNumber, replace it with real from backend
+		// dispatch(setOrderNumber(await uuid));
+		// // navigate(`/orderconfirmation/${mockOrderNumber}`);
+		// navigate('/orderconfirmation');
+		// // You can dispatch an action or perform further actions here
+		// dispatch(clearCart());
 	};
 
 	return (
@@ -118,10 +161,10 @@ function Checkout() {
 									required
 									label="Email"
 									id="email"
-									name="email"
+									name="userEmail"
 									type="email"
 									variant="standard"
-									value={shipmentInfo.email}
+									value={shipmentInfo.userEmail}
 									onChange={handleInputChange}
 								/>
 							</FormControl>
