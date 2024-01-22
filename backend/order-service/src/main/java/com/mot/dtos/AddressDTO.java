@@ -4,6 +4,7 @@ import com.mot.model.Address;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.lang.Nullable;
 
 import java.time.LocalDateTime;
 
@@ -22,6 +23,7 @@ public class AddressDTO {
 
     private String postalCode;
 
+    @Nullable
     private LocalDateTime createdOn;
 
     public AddressDTO(Address address) {
