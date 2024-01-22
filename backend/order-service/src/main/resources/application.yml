@@ -19,6 +19,9 @@ spring:
 #            readTimeout: 5000
 #            loggerLevel: basic
 
+  rabbitmq:
+    host: rabbitmq
+    port: 5672
   application:
     name: order-service
   datasource:
@@ -35,9 +38,14 @@ spring:
     show-sql: true
 
 app:
+  rabbitmq:
+    internal-exchange: internal.exchange
+    order-routing-key: internal.order.routing-key
   security:
     base-url: ${BASE_URL}
     nginx-url: ${NGINX_URL}
+    notification-url: ${NOTIFICATION_URL}
+    notification-port: ${NOTIFICATION_PORT}
     jwt:
       issuer: ${ISSUER}
       secret: ${JWT_SECRET}

@@ -9,12 +9,13 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Getter
 @Setter
 public class OrderDTO {
     private String email;
-//    private UUID threadId;
+    private UUID threadId;
     private AddressDTO address;
 
     @JsonManagedReference
@@ -23,9 +24,9 @@ public class OrderDTO {
     private LocalDateTime createdOn;
     private LocalDateTime updatedOn;
 
-    public OrderDTO(String email, AddressDTO address, List<OrderItemDTO> items, BigDecimal totalPrice, LocalDateTime createdOn, LocalDateTime updatedOn) {
+    public OrderDTO(String email, UUID threadId, AddressDTO address, List<OrderItemDTO> items, BigDecimal totalPrice, LocalDateTime createdOn, LocalDateTime updatedOn) {
         this.email = email;
-//        this.threadId = order.getThreadId();
+        this.threadId = threadId;
         this.address = address;
         this.totalPrice = totalPrice;
         this.createdOn = createdOn;
@@ -36,7 +37,7 @@ public class OrderDTO {
     //RETURNS ORDER DTO WITHOUT CHILDREN
     public OrderDTO(Order order) {
         this.email = order.getEmail();
-//        this.threadId = order.getThreadId();
+        this.threadId = order.getThreadId();
         this.address = AddressDTO.getAddressDTO(order.getOrderAddress());
         this.totalPrice = order.getTotalPrice();
         this.createdOn = order.getCreatedOn();
@@ -60,7 +61,7 @@ public class OrderDTO {
         return orderDTO;
     }
 
-    public static Order getOrder(String email, AddressDTO address, List<OrderItemDTO> items, BigDecimal totalPrice, LocalDateTime createdOn, LocalDateTime updatedOn) {
-        return new Order(email, AddressDTO.getAddress(address), items, totalPrice, createdOn, updatedOn);
+    public static Order getOrder(String email, UUID threadId, AddressDTO address, List<OrderItemDTO> items, BigDecimal totalPrice, LocalDateTime createdOn, LocalDateTime updatedOn) {
+        return new Order(email, threadId, AddressDTO.getAddress(address), items, totalPrice, createdOn, updatedOn);
     }
 }

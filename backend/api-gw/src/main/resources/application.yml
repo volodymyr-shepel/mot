@@ -27,6 +27,11 @@ spring:
           uri: lb://order-service
           predicates:
             - Path=/api/order/**
+        - id: notification-service-route
+          uri: lb://notification-service
+          predicates:
+            - Path=/api/email/createNotification
+            - Path=/api/email/createThread
 #        Here add the routes which will be accessible from api gateway
 
 management:

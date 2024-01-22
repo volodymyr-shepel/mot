@@ -91,7 +91,7 @@ public class SecurityConfiguration {
         // user details during the authentication process.
         authenticationProvider.setUserDetailsService(userDetailsService());
 
-        //specifies the password encoder that should be used by the AuthenticationProvider to verify the encoded
+        // specifies the password encoder that should be used by the AuthenticationProvider to verify the encoded
         // passwords stored in the database during the authentication process.
 
         authenticationProvider.setPasswordEncoder(passwordEncoder.bCryptPasswordEncoder());

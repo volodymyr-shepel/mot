@@ -40,6 +40,7 @@ public class OrderItem {
         if (setOrder)
             orderOfItem = OrderDTO.getOrder(
                     orderItem.getOrder().getEmail(),
+                    orderItem.getOrder().getThreadId(),
                     orderItem.getOrder().getAddress(),
                     orderItem.getOrder().getItems(),
                     orderItem.getOrder().getTotalPrice(),

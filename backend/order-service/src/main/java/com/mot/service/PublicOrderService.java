@@ -34,16 +34,21 @@ public class PublicOrderService {
     private final AuthenticationClient authenticationClient;
 
     private final ProductClient productClient;
+    private final NotificationClient notificationClient;
+    private final NotificationService notificationService;
 
     @Autowired
     public PublicOrderService(OrderRepository orderRepository, OrderItemRepository orderItemRepository, AddressRepository addressRepository,
-                              IdentityClient identityClient, AuthenticationClient auth, ProductClient productClient) {
+                              IdentityClient identityClient, AuthenticationClient auth, ProductClient productClient, NotificationClient notificationClient,
+                              NotificationService notificationService) {
         this.orderRepository = orderRepository;
         this.orderItemRepository = orderItemRepository;
         this.addressRepository = addressRepository;
         this.identityClient = identityClient;
         this.authenticationClient = auth;
         this.productClient = productClient;
+        this.notificationClient = notificationClient;
+        this.notificationService = notificationService;
     }
 
     public OrderDTO getOrderById(UUID orderId) {
@@ -59,14 +64,18 @@ public class PublicOrderService {
     public UUID placeOrder(String userEmail, AddressDTO address, List<LimitedOrderItemDTO> items) {
         validateInputsOrThrowError(userEmail, address, items);
 
+
+        UUID threadId = notificationClient.createThread(CreateThreadDTO.ofOrder(userEmail));
+
         List<OrderItemDTO> orderItems = getOrderItems(items);
 
-        Order order = createOrder(userEmail, address, orderItems, calculatePrice(orderItems));
+        Order order = createOrder(userEmail, threadId, address, orderItems, calculatePrice(orderItems));
 
         sendUpdateToProductService(orderItems);
 
         orderRepository.saveAndFlush(order);
 
+        notificationService.publishNotification(SendNotificationDTO.ofOrder(threadId, new HashMap<>()));
         //sendNotification
         return order.getId();
     }
@@ -79,8 +88,8 @@ public class PublicOrderService {
         }
     }
 
-    private Order createOrder(String userEmail, AddressDTO address, List<OrderItemDTO> orderItems, BigDecimal totalPrice) {
-        return OrderDTO.getOrder(userEmail, address, orderItems, totalPrice, LocalDateTime.now(), LocalDateTime.now());
+    private Order createOrder(String userEmail, UUID threadId, AddressDTO address, List<OrderItemDTO> orderItems, BigDecimal totalPrice) {
+        return OrderDTO.getOrder(userEmail, threadId, address, orderItems, totalPrice, LocalDateTime.now(), LocalDateTime.now());
     }
 
     private static BigDecimal calculatePrice(List<OrderItemDTO> orderItems) {

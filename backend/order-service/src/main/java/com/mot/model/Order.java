@@ -27,7 +27,7 @@ public class Order {
 
     private String email;
 
-//    private UUID threadId;
+    private UUID threadId;
 
     @OneToOne(cascade = CascadeType.ALL)//(mappedBy = "address", cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id")
@@ -45,8 +45,9 @@ public class Order {
 
     public Order() {}
 
-    public Order(String email, Address orderAddress, List<OrderItemDTO> items, BigDecimal totalPrice, LocalDateTime createdOn, LocalDateTime updatedOn) {
+    public Order(String email, UUID threadId, Address orderAddress, List<OrderItemDTO> items, BigDecimal totalPrice, LocalDateTime createdOn, LocalDateTime updatedOn) {
         this.email = email;
+        this.threadId = threadId;
         this.orderAddress = orderAddress;
         this.orderItems = items.stream().map(item -> OrderItemDTO.getItem(item, this)).collect(Collectors.toCollection(ArrayList::new));
         this.totalPrice = totalPrice;

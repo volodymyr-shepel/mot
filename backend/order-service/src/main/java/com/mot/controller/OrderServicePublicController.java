@@ -22,7 +22,7 @@ public class OrderServicePublicController {
         return publicOrderService.getOrderById(orderId);
     }
 
-		@CrossOrigin
+    @CrossOrigin
     @PostMapping(path = "/place-order")
     public UUID getProductsByCategory(@RequestBody PlaceOrderDTO placeOrderDTO){
         return publicOrderService.placeOrder(placeOrderDTO.userEmail(), placeOrderDTO.address(), placeOrderDTO.items());
