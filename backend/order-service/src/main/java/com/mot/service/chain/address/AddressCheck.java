@@ -4,6 +4,7 @@ import com.mot.dtos.AddressDTO;
 import com.mot.service.chain.handler.ChainLink;
 import com.mot.service.chain.handler.interfaces.Handle;
 
+import java.time.LocalDateTime;
 import java.util.Map;
 import java.util.Optional;
 
@@ -16,7 +17,16 @@ public class AddressCheck extends ChainLink {
         this.request = new Handle() {
             @Override
             public boolean isInvalid() {
-                return optionalAddress.isEmpty();
+                boolean result = optionalAddress.isEmpty();
+                if (!result) {
+                    AddressDTO addressDTO = optionalAddress.get();
+                    if (addressDTO.getCreatedOn() == null)
+                        addressDTO.setCreatedOn(LocalDateTime.now());
+                    return addressDTO.getAddressLine1().isBlank() && addressDTO.getAddressLine2().isBlank()
+                                || addressDTO.getCountry().isBlank()
+                                || addressDTO.getCity().isBlank();
+                }
+                return result;
             }
 
             @Override

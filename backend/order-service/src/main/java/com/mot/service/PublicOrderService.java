@@ -61,16 +61,13 @@ public class PublicOrderService {
 
         List<OrderItemDTO> orderItems = getOrderItems(items);
 
-        BigDecimal totalPrice = calculatePrice(orderItems);
-
-        createAddress(address);
-
-        Order order = createOrder(userEmail, address, orderItems, totalPrice);
-
-        createOrderItems(orderItems, order);
+        Order order = createOrder(userEmail, address, orderItems, calculatePrice(orderItems));
 
         sendUpdateToProductService(orderItems);
 
+        orderRepository.saveAndFlush(order);
+
+        //sendNotification
         return order.getId();
     }
 
@@ -82,22 +79,8 @@ public class PublicOrderService {
         }
     }
 
-    private void createOrderItems(List<OrderItemDTO> orderItems, Order order) {
-        List<OrderItem> orderItemList = orderItems.stream()
-                .map(item -> OrderItemDTO.getItem(item, order)).collect(Collectors.toCollection(ArrayList::new));
-        orderItemRepository.saveAllAndFlush(orderItemList);
-    }
-
     private Order createOrder(String userEmail, AddressDTO address, List<OrderItemDTO> orderItems, BigDecimal totalPrice) {
-        Order order = OrderDTO.getOrder(userEmail, address, orderItems, totalPrice, LocalDateTime.now(), LocalDateTime.now());
-        UUID orderId = orderRepository.saveAndFlush(order).getId();
-        order.setId(orderId);
-        return order;
-    }
-
-    private void createAddress(AddressDTO address) {
-        Address userAddress = AddressDTO.getAddress(address);
-        UUID userAddressId = addressRepository.saveAndFlush(userAddress).getId();
+        return OrderDTO.getOrder(userEmail, address, orderItems, totalPrice, LocalDateTime.now(), LocalDateTime.now());
     }
 
     private static BigDecimal calculatePrice(List<OrderItemDTO> orderItems) {
