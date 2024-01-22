@@ -64,6 +64,7 @@ public class NotificationService {
             helper.setFrom(emailSender, emailSenderName);
             javaMailSender.send(mimeMessage);
 
+
             ResponseEntity.ok("The email has been sent successfully");
         } catch (MessagingException | UnsupportedEncodingException e) {
             log.error("Check connection, error occurred");
