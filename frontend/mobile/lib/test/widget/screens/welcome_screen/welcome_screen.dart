@@ -11,15 +11,15 @@ void main() {
     await tester.pumpWidget(
       Builder(
         builder: (BuildContext context) {
-          MaterialApp.router(
+          final app = MaterialApp.router(
             debugShowCheckedModeBanner: false,
             title: 'MOT',
             theme: AppTheme.darkTheme(context),
-            routerConfig: router,
+            routerConfig: router
           );
 
           // The builder function must return a widget.
-          return Placeholder();
+          return app;
         },
       ),
     );
@@ -30,7 +30,11 @@ void main() {
 
     // Tap on the "Continue" button and verify navigation to SignInScreen.
     await tester.tap(find.text('Continue'));
-    await tester.pump();
+    await tester.pumpAndSettle(const Duration(milliseconds: 500));
+    await tester.pumpAndSettle();
+
+    // Widget signInScreenWidget = tester.widget(find.byType(Widget));
+    // print('Type of SignInScreen: ${signInScreenWidget.runtimeType}');
 
     // Verify that the SignInScreen is navigated to.
     expect(find.byType(SignInScreen), findsOneWidget);
