@@ -19,8 +19,14 @@ import '../../../helper/keyboard.dart';
 class DetailsScreen extends StatefulWidget {
   static String routeName = "/details";
   final Product productPreview;
+  
+  Future<http.Response> Function(Uri, {Map<String, String>? headers}) httpClient;
 
-  const DetailsScreen({Key? key, required this.productPreview}) : super(key: key);
+  DetailsScreen({
+    super.key, 
+    required this.productPreview,
+    this.httpClient = http.get,
+  });
 
   @override
   State<DetailsScreen> createState() => _DetailsScreenState();
@@ -40,7 +46,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
     String productId = widget.productPreview.id;
     String apiUrl = '$baseUrl/api/product/products/v1/p/$productId';
     try {
-      final response = await http.get(Uri.parse(apiUrl));
+      final response = await widget.httpClient(Uri.parse(apiUrl));
       if (response.statusCode == 200) {
         setState(() {
           product = Product.fromJson(json.decode(utf8.decode(response.bodyBytes)));

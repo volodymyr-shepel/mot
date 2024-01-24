@@ -27,40 +27,60 @@ class ImageCarousel extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: imagePadding), // Add horizontal padding
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20.0), // Adjust the border radius as needed
-              child: Image.network(
-                imageUrl,
-                fit: BoxFit.cover,
-              ),
+              child: imageUrl.startsWith('assets')
+                      ? Image.asset(
+                          imageUrl,
+                          fit: BoxFit.cover,
+                        )
+                      : Image.network(
+                          imageUrl,
+                          fit: BoxFit.cover,
+                        ),
             ),
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: imagePadding),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20.0),
-              child: Image.network(
-                imageUrl,
-                fit: BoxFit.cover,
-              ),
+              child: imageUrl.startsWith('assets')
+                      ? Image.asset(
+                          imageUrl,
+                          fit: BoxFit.cover,
+                        )
+                      : Image.network(
+                          imageUrl,
+                          fit: BoxFit.cover,
+                        ),
             ),
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: imagePadding),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20.0),
-              child: Image.network(
-                imageUrl,
-                fit: BoxFit.cover,
-              ),
+              child: imageUrl.startsWith('assets')
+                      ? Image.asset(
+                          imageUrl,
+                          fit: BoxFit.cover,
+                        )
+                      : Image.network(
+                          imageUrl,
+                          fit: BoxFit.cover,
+                        ),
             ),
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: imagePadding),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20.0),
-              child: Image.network(
-                imageUrl,
-                fit: BoxFit.cover,
-              ),
+              child: imageUrl.startsWith('assets')
+                      ? Image.asset(
+                          imageUrl,
+                          fit: BoxFit.cover,
+                        )
+                      : Image.network(
+                          imageUrl,
+                          fit: BoxFit.cover,
+                        ),
             ),
           ),
           // ... Add more images if needed
