@@ -1,0 +1,59 @@
+server:
+  port: 8089
+
+spring:
+  cloud:
+    consul:
+      host: consul
+      port: 8500
+      discovery:
+        register: true
+        prefer-ip-address: true
+        service-name: order-service
+        instance-id: ${spring.application.name}:${server.port}
+#    openfeign:
+#      client:
+#        config:
+#          default:
+#            connectTimeout: 5000
+#            readTimeout: 5000
+#            loggerLevel: basic
+
+  rabbitmq:
+    host: rabbitmq
+    port: 5672
+  application:
+    name: order-service
+  datasource:
+    username: ${DATASOURCE_USERNAME}
+    password: ${DATASOURCE_PASSWORD}
+    url: ${DATASOURCE_URL}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: true
+
+app:
+  rabbitmq:
+    internal-exchange: internal.exchange
+    order-routing-key: internal.order.routing-key
+  security:
+    base-url: ${BASE_URL}
+    nginx-url: ${NGINX_URL}
+    notification-url: ${NOTIFICATION_URL}
+    notification-port: ${NOTIFICATION_PORT}
+    jwt:
+      issuer: ${ISSUER}
+      secret: ${JWT_SECRET}
+
+#feign:
+#  client:
+#    config:
+#      default:
+#        connectTimeout: 5000
+#        readTimeout: 5000
+#        loggerLevel: basic

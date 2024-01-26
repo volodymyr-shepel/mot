@@ -16,7 +16,7 @@ conn = psycopg2.connect(**db_params)
 cursor = conn.cursor()
 
 # Load JSON data from file
-with open('./data/categories_hierarchy.json', 'r') as file:
+with open('../data/categories_hierarchy.json', 'r') as file:
     data = json.load(file)
 
 # Define a function to recursively insert categories and subcategories

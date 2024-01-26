@@ -44,6 +44,21 @@ services:
       - product_service_data:/var/lib/postgresql/data
     networks:
       - mot
+
+  postgres-order:
+    image: postgres:16.1
+    container_name: mot_order_postgres
+    environment:
+      POSTGRES_DB: order
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: root
+    ports:
+      - "5443:5432"
+    volumes:
+      - order_service_data:/var/lib/postgresql/data
+    networks:
+      - mot
+
   #pgadmin4
   pgadmin:
     image: dpage/pgadmin4:7.4
@@ -143,6 +158,18 @@ services:
     networks:
       - mot
 
+  order-service:
+    container_name: order-service
+    build:
+      context: .
+      dockerfile: ./Docker/order-service/Dockerfile
+    depends_on:
+      - postgres-order
+    ports:
+      - "8089:8089"
+    networks:
+      - mot
+
 networks:
   mot:
     driver: bridge
@@ -151,3 +178,4 @@ volumes:
   identity_service_data:
   notification_service_data:
   product_service_data:
+  order_service_data:

@@ -16,8 +16,14 @@ public class EmailConfig {
     @Value("${rabbitmq.queues.email}")
     private String emailQueue;
 
+    @Value("${rabbitmq.queues.order}")
+    private String orderQueue;
+
     @Value("${rabbitmq.routing-keys.internal-email}")
     private String internalEmailRoutingKey;
+
+    @Value("${rabbitmq.routing-keys.internal-order}")
+    private String internalOrderRoutingKey;
 
     @Bean
     public TopicExchange internalTopicExchange(){
@@ -29,12 +35,26 @@ public class EmailConfig {
         return new Queue(this.emailQueue);
     }
 
+
+    @Bean
+    public Queue orderQueue(){
+        return new Queue(this.orderQueue);
+    }
+
     @Bean
     public Binding internalToEmailBinding(){
         return BindingBuilder
                 .bind(emailQueue())
                 .to(internalTopicExchange())
                 .with(this.internalEmailRoutingKey);
+    }
+
+    @Bean
+    public Binding internalToOrderBinding(){
+        return BindingBuilder
+                .bind(orderQueue())
+                .to(internalTopicExchange())
+                .with(this.internalOrderRoutingKey);
     }
 
 

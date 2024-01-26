@@ -15,6 +15,9 @@ function OrderConfirmation() {
 
 	// Update orderNumberRef in useRef when orderNumber is changed from Redux
   useEffect(() => {
+		const fetchOrderNumber = async () => {
+			
+		}
     orderNumberRef.current = orderNumber;
   }, [orderNumber]);
 

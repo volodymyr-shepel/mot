@@ -51,5 +51,7 @@ rabbitmq:
     internal: internal.exchange
   queues:
     email: email.queue
+    order: order.queue
   routing-keys:
     internal-email: internal.email.routing-key
+    internal-order: internal.order.routing-key
