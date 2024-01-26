@@ -1,7 +1,10 @@
 import React, { useEffect, useRef } from 'react';
-import { Box, Breadcrumbs, Button, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import Box from '@mui/material/Box';
+import Breadcrumbs from '@mui/material/Breadcrumbs';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 import { clearOrderNumber } from './../../store/orderSlice';
 
 function OrderConfirmation() {

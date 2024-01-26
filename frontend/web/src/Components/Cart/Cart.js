@@ -1,9 +1,17 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Box, Breadcrumbs, Button, FormControl, List, ListItem, TextField, Typography } from '@mui/material';
-import { clearCart, updateCartItemQuantity, removeCartItem } from './../../store/cartSlice';
 import { Link, useNavigate } from 'react-router-dom';
+import Box from '@mui/material/Box';
+import Breadcrumbs from '@mui/material/Breadcrumbs';
+import Button from '@mui/material/Button';
+import FormControl from '@mui/material/FormControl';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { clearCart, updateCartItemQuantity, removeCartItem } from './../../store/cartSlice';
+import notfound from '../../static/images/404-image.png';
 
 
 function Cart() {
@@ -34,6 +42,10 @@ function Cart() {
 		return price.toFixed(2);
 	};
 
+	const addDefaultSrc = (event) => {
+		event.target.src = notfound;
+	}
+
 	return (
 		<Box
 			sx={{
@@ -52,10 +64,10 @@ function Cart() {
 				</Breadcrumbs>
 				<Typography variant='h4' component="h1">Cart</Typography>
 				{cartItems.length === 0 ? (
-					<Typography>Your cart is empty</Typography>
+					<Typography data-testid='empty-cart-message'>Your cart is empty</Typography>
 				) : (
 					<>
-						<List>
+						<List data-testid='cart-container'>
 							{cartItems.map((item) => (
 								<ListItem key={item.id}
 									display="flex"
@@ -77,6 +89,7 @@ function Cart() {
 											}}
 											alt={item.name}
 											src={item.imageUrl}
+											onError={addDefaultSrc}
 										/>
 										<Box component="h2" sx={{padding: 1}}>
 											<Button component={Link} onClick={() => handleProductClick(item.id)} to={`/product/${item.id}`}>{item.name}</Button>
@@ -101,6 +114,7 @@ function Cart() {
 											size="large"
 											variant="outlined"
 											color="primary"
+											data-testid={`remove-${item.id}`}
 											onClick={() => handleDeleteItemFromCart(item.id)}
 										>
 											<DeleteIcon sx={{ mr: 1 }} />Delete
@@ -113,7 +127,15 @@ function Cart() {
 							<Typography variant="h6" component="div">Total Sum: {formatPrice(calculateTotalSum())} PLN</Typography>
 						</Box>
 						<Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-							<Button size="large" variant="outlined" color="primary" sx={{ mr: 1 }} onClick={handleClearCart}>Clear Cart</Button>
+							<Button 
+								size="large" 
+								variant="outlined" 
+								color="primary" 
+								sx={{ mr: 1 }} 
+								data-testid="clearCart"
+								onClick={handleClearCart}>
+								Clear Cart
+							</Button>
 							<Button component={Link} size="large" variant="contained" color="primary" to="/checkout">Proceed to Checkout</Button>
 						</Box>
 					</>

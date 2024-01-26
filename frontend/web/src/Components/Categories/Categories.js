@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Card from '@mui/material/Card';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
-import Card from '@mui/material/Card';
-import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 import { setSelectedCategory, setCategories } from './../../store/categorySlice';
 import { getCategoriesList } from '../../store/categoriesList';
 
@@ -47,7 +47,6 @@ function Categories() {
 		<Container sx={{ py: 8 }} maxWidth="xl">
 			<Grid container spacing={4}>
 				{categories.map((category) => (
-				// (category.products) &&
 					<Grid item key={category.id} xs={12} sm={6} md={4}>
 						<Card variant="outlined">
 							<Button component={Link} to={`/category/${category.id}`} onClick={() => handleCategoryClick(category)} variant="h5"
