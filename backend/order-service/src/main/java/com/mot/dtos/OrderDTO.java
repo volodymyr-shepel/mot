@@ -14,6 +14,7 @@ import java.util.UUID;
 @Getter
 @Setter
 public class OrderDTO {
+    private UUID orderId;
     private String email;
     private UUID threadId;
     private AddressDTO address;
@@ -36,6 +37,7 @@ public class OrderDTO {
 
     //RETURNS ORDER DTO WITHOUT CHILDREN
     public OrderDTO(Order order) {
+        this.orderId = order.getId();
         this.email = order.getEmail();
         this.threadId = order.getThreadId();
         this.address = AddressDTO.getAddressDTO(order.getOrderAddress());
