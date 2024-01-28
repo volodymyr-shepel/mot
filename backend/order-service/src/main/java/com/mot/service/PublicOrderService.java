@@ -19,7 +19,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
-public class PublicOrderService {
+public class PublicOrderService implements IPublicOrderService {
 
     Logger logger = LoggerFactory.getLogger(PublicOrderService.class);
 
@@ -60,6 +60,7 @@ public class PublicOrderService {
     /**
      * Verifies user, checks product quantity, creates notification thread, creates order and starts order execution
      */
+    @Override
     @Transactional
     public UUID placeOrder(String userEmail, AddressDTO address, List<LimitedOrderItemDTO> items) {
         validateInputsOrThrowError(userEmail, address, items);
@@ -73,7 +74,7 @@ public class PublicOrderService {
 
         sendUpdateToProductService(orderItems);
 
-        orderRepository.saveAndFlush(order);
+       orderRepository.saveAndFlush(order);
 
         notificationService.publishNotification(SendNotificationDTO.ofOrder(threadId, new HashMap<>()));
         //sendNotification
@@ -124,7 +125,8 @@ public class PublicOrderService {
         ChainLink chain = ChainHelper.validationChain(identityClient, authenticationClient, userEmail, address, items, productClient, new HashMap<>());
 
         chain.handle();
-
+        logger.info(chain.getErrors().toString());
+        logger.info(address.toString());
         if (!chain.getErrors().isEmpty())
             throw new EntityNotFoundException(getMessage(chain).toString());
     }

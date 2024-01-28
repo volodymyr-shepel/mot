@@ -15,10 +15,15 @@ public class QuantityCheck extends ChainLink {
     public QuantityCheck(List<LimitedOrderItemDTO> items, ProductClient productClient, Map<String, String> errors) {
         this.items = items;
         this.productClient = productClient;
+        this.errors = errors;
         this.request = new Handle() {
             @Override
             public boolean isInvalid() {
-                return items.stream().anyMatch(item -> productClient.getProductQuantity(item.getProductId()) < item.getQuantity());
+                return items == null || items.stream().anyMatch(
+                        item ->
+                                productClient.getProductQuantity(item.getProductId()) < item.getQuantity()
+                        || item.getQuantity() <= 0
+                ) || items.isEmpty();
             }
 
             @Override
