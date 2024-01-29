@@ -74,10 +74,10 @@ public class PublicOrderService implements IPublicOrderService {
 
         sendUpdateToProductService(orderItems);
 
-       orderRepository.saveAndFlush(order);
+        orderRepository.saveAndFlush(order);
 
         notificationService.publishNotification(SendNotificationDTO.ofOrder(threadId, new HashMap<>(){{
-            put("orderUuid", order.getId().toString());
+            put("orderUuid", (order.getId() != null) ? order.getId().toString() : "NULL");
         }}));
         //sendNotification
         return order.getId();
