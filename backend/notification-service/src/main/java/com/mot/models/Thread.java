@@ -29,6 +29,7 @@ public class Thread {
 
     private String recipientEmail;
 
+    @Enumerated(EnumType.STRING)
     private NotificationType notificationType;
     @NotNull
     private LocalDateTime createdOn;
