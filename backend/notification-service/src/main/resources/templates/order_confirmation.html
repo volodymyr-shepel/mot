@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation</title>
+</head>
+
+<body style="display: flex; justify-content: center; align-items: center; height: 30vh;">
+<div class="email-container" style="max-width: 600px; padding: 20px; background-color: #fff; border: 1px solid #e0e0e0; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); text-align: center;">
+    <table role="presentation" style="width: 100%;">
+        <!-- ... Header ... -->
+    </table>
+
+    <!-- Add your email content here -->
+    <table role="presentation">
+        <tr>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <p>
+                    Hi <span th:text="${name}" style="margin: 1em 0;"></span>
+                </p>
+                <p>
+                    Thank you for your order. Your order details are as follows:
+                </p>
+                <p>
+                    <strong>Order ID:</strong> <span th:text="${orderUuid}"></span>
+                </p>
+                <p>Thank you for choosing us!</p>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

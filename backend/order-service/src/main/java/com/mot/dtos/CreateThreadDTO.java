@@ -18,6 +18,6 @@ public record CreateThreadDTO(
 ) {
 
     public static CreateThreadDTO ofOrder(String userEmail) {
-        return new CreateThreadDTO("Order", null, userEmail, NotificationType.EMAIL_VERIFICATION);
+        return new CreateThreadDTO("Order", null, userEmail, NotificationType.ORDER_CONFIRMATION);
     }
 }
