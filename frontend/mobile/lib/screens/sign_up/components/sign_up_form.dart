@@ -55,6 +55,7 @@ class _SignUpFormState extends State<SignUpForm> {
 
         isCorrect = true;
 
+        // TODO : change it so it works with context.go
         Navigator.push(context, MaterialPageRoute(builder: (context) => CompleteProfileScreen(userData: userData)));
 
       } else {

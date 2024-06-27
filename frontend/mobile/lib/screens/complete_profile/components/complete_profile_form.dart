@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mot/components/custom_text_form_field.dart';
 import 'package:mot/models/user_data.dart';
 import 'package:mot/screens/sign_up/sign_up_success_screen.dart';
@@ -42,7 +43,7 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
         // Successful response, handle it accordingly
         print('Request successful: ${response.body}');
         // Navigate to the next screen on success
-        Navigator.pushNamed(context, SignUpSuccessScreen.routeName);
+        context.go(SignUpSuccessScreen.routeName);
       } else {
         // Error response, handle errors
         print('Error: ${response.statusCode}, ${response.body}');

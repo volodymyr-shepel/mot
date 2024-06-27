@@ -1,4 +1,3 @@
-
 upstream api-gateway {
   {{ range service "api-gateway" }}
   server {{ .Address }}:{{ .Port }};
@@ -6,7 +5,6 @@ upstream api-gateway {
   # Fallback server in case there are no instances registered
   server localhost:80;
 }
-
 
 server {
   listen 80;
@@ -18,5 +16,25 @@ server {
     proxy_set_header X-Real-IP $remote_addr;
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header X-Forwarded-Proto $scheme;
+    
+		# CORS headers
+    #add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS' always;
+    #add_header 'Access-Control-Allow-Headers' '*' always;
+    #add_header 'Access-Control-Expose-Headers' '*' always;
+    #
+    ## Set the max age for preflight requests in seconds
+    #add_header 'Access-Control-Max-Age' 3600 always;
+    
+    if ($request_method = 'OPTIONS') {
+        # Handle preflight requests
+    		add_header 'Access-Control-Allow-Origin' '*' always;
+				add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS' always;
+				add_header 'Access-Control-Allow-Headers' '*' always;
+				add_header 'Access-Control-Expose-Headers' '*' always;
+    		add_header 'Access-Control-Max-Age' 3600 always;
+        add_header 'Content-Length' 0;
+        add_header 'Content-Type' 'text/plain charset=UTF-8';
+        return 200;
+    }
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../constants.dart';
 
 class CustomSuccessScreen extends StatelessWidget {
@@ -19,13 +20,7 @@ class CustomSuccessScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: const Icon(Icons.arrow_back_ios),
-          color: Colors.white,
-        ),
+
         backgroundColor: kPrimaryDarkColor, // Change to your app's primary color
       ),
       body: Column(
@@ -50,7 +45,7 @@ class CustomSuccessScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, nextRoute);
+                context.go(nextRoute);
               },
               child: Text(buttonText),
             ),

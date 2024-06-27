@@ -1,10 +1,12 @@
 package com.mot.model;
 
+import com.mot.dtos.CategoryDTO;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 public class Category {
@@ -35,6 +37,20 @@ public class Category {
 
     public Category() {
     }
+
+    public CategoryDTO convertToDTO() {
+        CategoryDTO dto = new CategoryDTO();
+        dto.setId(this.getId());
+        dto.setParentCategoryId(this.getParent() != null ? this.getParent().getId() : null);
+        dto.setName(this.getName());
+        dto.setChildCategories(
+                this.getSubCategories().stream()
+                        .map(Category::convertToDTO)
+                        .collect(Collectors.toList())
+        );
+        return dto;
+    }
+
 
     public Integer getId() {
         return id;

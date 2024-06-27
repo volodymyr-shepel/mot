@@ -44,6 +44,21 @@ services:
       - product_service_data:/var/lib/postgresql/data
     networks:
       - mot
+
+  postgres-order:
+    image: postgres:16.1
+    container_name: mot_order_postgres
+    environment:
+      POSTGRES_DB: order
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: root
+    ports:
+      - "5443:5432"
+    volumes:
+      - order_service_data:/var/lib/postgresql/data
+    networks:
+      - mot
+
   #pgadmin4
   pgadmin:
     image: dpage/pgadmin4:7.4
@@ -60,7 +75,7 @@ services:
 
   rabbitmq:
     image: rabbitmq:3.12.9-management
-    container_name: mot_rabbitmq
+    container_name: rabbitmq
     ports:
       - "5672:5672"
       - "15672:15672"
@@ -71,10 +86,12 @@ services:
   nginx:
     build:
       context: .
-      dockerfile: ./Docker/nginx/nginx.dockerfile
+      dockerfile: ./Docker/nginx/Dockerfile
     container_name: mot_nginx
     ports:
       - "80:80"
+    depends_on:
+      - consul
     networks:
       - mot
 
@@ -89,6 +106,70 @@ services:
     networks:
       - mot
 
+  #  My services
+  api-gw:
+    container_name: api-gw
+    build:
+      context: .
+      dockerfile: ./Docker/api-gw/Dockerfile
+    ports:
+      - "8083:8083"
+    depends_on:
+      - consul
+    networks:
+      - mot
+
+  identity-service:
+    container_name: identity-service
+    build:
+      context: .
+      dockerfile: ./Docker/identity-service/Dockerfile
+    ports:
+      - "8087:8087"
+    depends_on:
+      - postgres-identity
+      - consul
+    networks:
+      - mot
+
+  product-service:
+    container_name: product-service
+    build:
+      context: .
+      dockerfile: ./Docker/product-service/Dockerfile
+    ports:
+      - "8088:8088"
+    depends_on:
+      - postgres-product
+      - consul
+    networks:
+      - mot
+
+  notification-service:
+    container_name: notification-service
+    build:
+      context: .
+      dockerfile: ./Docker/notification-service/Dockerfile
+    depends_on:
+      - postgres-notification
+      - consul
+    ports:
+      - "8082:8082"
+    networks:
+      - mot
+
+  order-service:
+    container_name: order-service
+    build:
+      context: .
+      dockerfile: ./Docker/order-service/Dockerfile
+    depends_on:
+      - postgres-order
+    ports:
+      - "8089:8089"
+    networks:
+      - mot
+
 networks:
   mot:
     driver: bridge
@@ -97,3 +178,4 @@ volumes:
   identity_service_data:
   notification_service_data:
   product_service_data:
+  order_service_data:

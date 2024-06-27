@@ -1,188 +1,52 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:mot/constants.dart';
-import 'package:mot/screens/profile/profile_screen.dart';
+import 'package:go_router/go_router.dart';
+import 'package:mot/components/bottom_navigation_bar.dart';
+import 'package:mot/screens/cart_screen/cart_screen.dart';
+import 'package:mot/screens/favorite_screen/favorite_screen.dart';
+import 'package:mot/screens/home/home_screen.dart';
+import 'package:mot/screens/profile_screen/profile_screen.dart';
+import 'package:mot/screens/search_screen/search_screen.dart';
 
-
+// transition between different pages works fine( now it may look strange black appearence but it is because there is no elements)
 class InitScreen extends StatefulWidget {
-  const InitScreen({super.key});
+  const InitScreen({Key? key, required this.child}) : super(key: key);
 
-  static String routeName = "/";
+  final Widget child;
+
+  // TODO: change the route name from / to smth else
+  static String routeName = "/init";
 
   @override
-  State<InitScreen> createState() => _InitScreenState();
+  _InitScreenState createState() => _InitScreenState();
 }
 
 class _InitScreenState extends State<InitScreen> {
   int currentSelectedIndex = 0;
 
-  void updateCurrentIndex(int index) {
-    setState(() {
-      currentSelectedIndex = index;
-    });
+  String indexToPath(int index) {
+    switch(index){
+      case 0: return HomeScreen.routeName;
+      case 1: return SearchScreen.routeName;
+      case 2: return FavoriteScreen.routeName;
+      case 3: return CartScreen.routeName;
+      case 4: return ProfileScreen.routeName;
+      default : return HomeScreen.routeName;
+    }
   }
 
-  final List<Widget> pages = [
-    const Center(
-      child: Text("Home Screen", style: TextStyle(fontSize: 24.0)),
-    ),
-    const Center(
-      child: Text("Search Screen", style: TextStyle(fontSize: 24.0)),
-    ),
-    const Center(
-      child: Text("Favorite Screen", style: TextStyle(fontSize: 24.0)),
-    ),
-    const Center(
-      child: Text("Cart Screen", style: TextStyle(fontSize: 24.0)),
-    ),
-    const ProfileScreen()
-  ];
-
-  final List<AppBar> appBars = [
-    AppBar(
-      automaticallyImplyLeading: false,
-      backgroundColor: kPrimaryDarkColor,
-      title: Text(
-        'Home',
-        style: TextStyle(fontSize: 20.0, color: Colors.white),
-      ),
-    ),
-    AppBar(
-      automaticallyImplyLeading: false,
-      backgroundColor: kPrimaryDarkColor,
-      title: Text(
-        'Search',
-        style: TextStyle(fontSize: 20.0, color: Colors.white),
-      ),
-    ),
-    AppBar(
-      automaticallyImplyLeading: false,
-      backgroundColor: kPrimaryDarkColor,
-      title: Text(
-        'Favorite',
-        style: TextStyle(fontSize: 20.0, color: Colors.white),
-      ),
-    ),
-    AppBar(
-      automaticallyImplyLeading: false,
-      backgroundColor: kPrimaryDarkColor,
-      title: Text(
-        'Cart',
-        style: TextStyle(fontSize: 20.0, color: Colors.white),
-      ),
-    ),
-    AppBar(
-      automaticallyImplyLeading: false,
-      backgroundColor: kPrimaryDarkColor,
-      title: Text(
-        'Profile',
-        style: TextStyle(fontSize: 20.0, color: Colors.white),
-      ),
-    ),
-  ];
-
-
-  int currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBars[currentSelectedIndex],
-      body: pages[currentSelectedIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        onTap: updateCurrentIndex,
-        backgroundColor: kPrimaryDarkColor,
+      body: widget.child,
+      bottomNavigationBar: CustomBottomNavigationBar(
         currentIndex: currentSelectedIndex,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        type: BottomNavigationBarType.fixed,
-        items: [
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              "assets/icons/Shop Icon.svg",
-              colorFilter: const ColorFilter.mode(
-                inActiveIconColor,
-                BlendMode.srcIn,
-              ),
-            ),
-            activeIcon: SvgPicture.asset(
-              "assets/icons/Shop Icon.svg",
-              colorFilter: const ColorFilter.mode(
-                kPrimaryColor,
-                BlendMode.srcIn,
-              ),
-            ),
-            label: "Home",
-          ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              "assets/icons/Search Icon.svg",
-              colorFilter: const ColorFilter.mode(
-                inActiveIconColor,
-                BlendMode.srcIn,
-              ),
-            ),
-            activeIcon: SvgPicture.asset(
-              "assets/icons/Search Icon.svg",
-              colorFilter: const ColorFilter.mode(
-                kPrimaryColor,
-                BlendMode.srcIn,
-              ),
-            ),
-            label: "Search",
-          ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              "assets/icons/Heart Icon.svg",
-              colorFilter: const ColorFilter.mode(
-                inActiveIconColor,
-                BlendMode.srcIn,
-              ),
-            ),
-            activeIcon: SvgPicture.asset(
-              "assets/icons/Heart Icon.svg",
-              colorFilter: const ColorFilter.mode(
-                kPrimaryColor,
-                BlendMode.srcIn,
-              ),
-            ),
-            label: "Fav",
-          ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              "assets/icons/Cart Icon.svg",
-              colorFilter: const ColorFilter.mode(
-                inActiveIconColor,
-                BlendMode.srcIn,
-              ),
-            ),
-            activeIcon: SvgPicture.asset(
-              "assets/icons/Cart Icon.svg",
-              colorFilter: const ColorFilter.mode(
-                kPrimaryColor,
-                BlendMode.srcIn,
-              ),
-            ),
-            label: "Cart",
-          ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              "assets/icons/User Icon.svg",
-              colorFilter: const ColorFilter.mode(
-                inActiveIconColor,
-                BlendMode.srcIn,
-              ),
-            ),
-            activeIcon: SvgPicture.asset(
-              "assets/icons/User Icon.svg",
-              colorFilter: const ColorFilter.mode(
-                kPrimaryColor,
-                BlendMode.srcIn,
-              ),
-            ),
-            label: "Profile",
-          ),
-        ],
+        onTap: (int index) {
+          setState(() {
+            currentSelectedIndex = index;
+          });
+          context.go(indexToPath(index));
+        },
       ),
     );
   }

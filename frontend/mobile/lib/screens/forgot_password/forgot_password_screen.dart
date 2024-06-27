@@ -16,9 +16,7 @@ class ForgotPasswordScreen extends StatelessWidget {
             Navigator.pop(context);
           },
           icon: const Icon(Icons.arrow_back_ios),
-          color: Colors.white,
         ),
-        backgroundColor: kPrimaryDarkColor,
       ),
       body: const Center(
         child: SizedBox(

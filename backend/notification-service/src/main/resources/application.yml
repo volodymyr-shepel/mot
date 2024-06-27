@@ -9,9 +9,24 @@ app:
 spring:
   application:
     name : notification-service
+  datasource:
+    username: ${DATASOURCE_USERNAME}
+    password: ${DATASOURCE_PASSWORD}
+    url: ${DATASOURCE_URL}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: true
+  rabbitmq:
+    host: rabbitmq
+    port: 5672
   cloud:
     consul:
-      host: localhost
+      host: consul
       port: 8500
       discovery:
         register: true
@@ -36,5 +51,7 @@ rabbitmq:
     internal: internal.exchange
   queues:
     email: email.queue
+    order: order.queue
   routing-keys:
     internal-email: internal.email.routing-key
+    internal-order: internal.order.routing-key

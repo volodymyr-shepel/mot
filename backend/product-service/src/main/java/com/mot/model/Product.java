@@ -1,5 +1,8 @@
 package com.mot.model;
 
+import com.mot.dtos.ProductDTO;
+import com.mot.dtos.ProductPreviewDTO;
+import com.mot.util.SpecificationConverter;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -15,10 +18,15 @@ public class Product {
 
     private String name;
 
+    @Column(columnDefinition = "TEXT")
+    private String description;
+
     @Column(columnDefinition = "TEXT") // Specify TEXT type for unlimited length
     private String specification;
 
     private Integer quantity;
+
+    private Double price;
 
     private String imageUrl;
 
@@ -32,6 +40,72 @@ public class Product {
 
     public Product() {
         // Default constructor
+    }
+
+    public Product(String sku,
+                   String name,
+                   String description,
+                   String specification,
+                   Integer quantity,
+                   Double price,
+                   String imageUrl,
+                   LocalDateTime createdOn,
+                   LocalDateTime updatedOn,
+                   Category category) {
+        this.sku = sku;
+        this.name = name;
+        this.description = description;
+        this.specification = specification;
+        this.quantity = quantity;
+        this.price = price;
+        this.imageUrl = imageUrl;
+        this.createdOn = createdOn;
+        this.updatedOn = updatedOn;
+        this.category = category;
+    }
+
+    public ProductDTO convertToProductDTO() {
+
+        return new ProductDTO(
+                this.getId(),
+                this.getSku(),
+                this.getName(),
+                this.getDescription(),
+                SpecificationConverter.convertSpecificationString(this.getSpecification()),
+                this.getQuantity(),
+                this.getPrice(),
+                this.getImageUrl(),
+                this.getCreatedOn(),
+                this.getUpdatedOn(),
+                this.getCategory().getId()
+        );
+    }
+
+    public ProductPreviewDTO convertToProductPreviewDTO(){
+        return new ProductPreviewDTO(
+                this.getId(),
+                this.getName(),
+                this.getPrice(),
+                this.getQuantity(),
+                this.getImageUrl()
+        );
+    }
+
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public UUID getId() {

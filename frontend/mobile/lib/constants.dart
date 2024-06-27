@@ -5,6 +5,10 @@ const kPrimaryLightColor = Color(0xFFFFECDF);
 const kTextColor = Colors.white;
 const kAnimationDuration = Duration(milliseconds: 200);
 const kPrimaryDarkColor = Color(0xFF222325);
+
+
+const kSecondaryColor = Color(0xFF979797);
+
 // Form Error
 final RegExp emailValidatorRegExp =
     RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
@@ -30,8 +34,11 @@ const String kAddressNullError = "Please Enter your address";
 
 
 
-const String baseUrl = 'http://192.168.1.46';
-
+const String baseUrl = 'http://192.168.137.1:80';
+//192.168.137.1
+//192.168.1.46
+//192.168.0.102
+//192.168.0.101
 
 
 const headingStyle = TextStyle(
